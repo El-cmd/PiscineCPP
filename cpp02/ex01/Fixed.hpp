@@ -3,14 +3,19 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 class Fixed
 {
     public:
     Fixed();
-    Fixed(Fixed &autre);
+    Fixed(Fixed const &autre);
+    Fixed(int const a);
+    Fixed(float const a);
     int getRawBits( void ) const;
     void setRawBits( int const raw );
+    float toFloat(void) const;
+    int toInt(void) const;
     Fixed   &operator=( Fixed const &result );
     ~Fixed();
 
@@ -19,5 +24,6 @@ class Fixed
     int nbFix;
 
 };
+std::ostream &operator<<(std::ostream &out, Fixed const &result);
 
 #endif   
