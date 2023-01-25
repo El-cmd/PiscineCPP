@@ -6,6 +6,10 @@
 
 class Bureaucrat
 {
+    public:
+    Bureaucrat();
+    ~Bureaucrat();
+    private:
 
 };
 
