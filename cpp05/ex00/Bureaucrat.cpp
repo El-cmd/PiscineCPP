@@ -7,6 +7,10 @@ Bureaucrat::Bureaucrat(): name("Doc"), grade(1)
 
 Bureaucrat::Bureaucrat(std::string n, int g): name(n), grade(g)
 {
+    if (g < 1)
+        throw Bureaucrat::GradeTooHighException();
+    if (g > 150)
+        throw Bureaucrat::GradeTooLowException();
     std::cout << "Surcharge constructor called\n";
 }
 Bureaucrat::~Bureaucrat()
@@ -24,23 +28,22 @@ std::string Bureaucrat::getName()
     return(this->name);
 }
 
-const char *Bureaucrat::GradeTooHighException()
-{
-    return ("Grade is too high\n");
-}
-const char *Bureaucrat::GradeTooLowException()
-{
-    return ("Grade is too low\n");
-}
-
 void Bureaucrat::down()
 {
-    if (this->grade > 150)
-    throw ;
+    if (this->grade >= 150)
+        throw Bureaucrat::GradeTooLowException();
     this->grade++;
 }
 
 void Bureaucrat::up()
 {
+    if (this->grade <= 1)
+        throw Bureaucrat::GradeTooHighException();
     this->grade--;
+}
+
+std::ostream &operator<<(std::ostream &out, Bureaucrat &b)
+{
+    out << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
+    return (out);
 }
