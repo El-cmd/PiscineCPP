@@ -18,6 +18,7 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Default Bureaucrat destructor called\n";
 }
 
+//ACCESSEUR
 int Bureaucrat::getGrade()
 {
     return (this->grade);
@@ -28,6 +29,7 @@ std::string Bureaucrat::getName()
     return(this->name);
 }
 
+//CHANGE GRADE
 void Bureaucrat::down()
 {
     if (this->grade >= 150)
@@ -42,6 +44,21 @@ void Bureaucrat::up()
     this->grade--;
 }
 
+//SIGN FORM
+void Bureaucrat::signForm(Form &f)
+{
+    if (f.getGradeToSign() < this->grade)
+        std::cout << this->name << " cannot sign " << f.getName() << " because his grade is too low\n";
+    else if (f.getIsSigned())
+        std::cout << this->name << " cannot sign " << f.getName() << " because the form is already signed\n";
+    else
+    {
+        f.beSigned(*this);
+        std::cout << this->name << " signs " << f.getName() << std::endl;
+    }
+}
+
+//SURCHARGE OPERATEUR
 std::ostream &operator<<(std::ostream &out, Bureaucrat &b)
 {
     out << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;

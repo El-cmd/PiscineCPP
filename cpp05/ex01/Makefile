@@ -1,9 +1,11 @@
 CC = clang++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = Buro
+NAME = BuroSecond
 
 SRC = Bureaucrat.cpp \
+	  Form.cpp \
 	  main.cpp
+
 RM = rm -rf
 OBJ = $(SRC:.cpp=.o)
 
