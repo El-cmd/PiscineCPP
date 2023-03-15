@@ -3,9 +3,15 @@
 
 #include "Form.hpp"
 
-class ShrubberyCreationForm
+class ShrubberyCreationForm: public Form
 {
+	public:
+	ShrubberyCreationForm(std::string t);
+	~ShrubberyCreationForm();
 
+	private:
+	std::string target;
+	
 };
 
 #endif

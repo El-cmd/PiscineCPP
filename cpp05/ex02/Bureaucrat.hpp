@@ -16,9 +16,10 @@ class Bureaucrat
     ~Bureaucrat();
     void down();
     void up();
-    int getGrade();
-    std::string getName();
+    int getGrade() const;
+    std::string getName() const;
 	void signForm(Form &f);
+    void executeForm(Form const &form);
     
     private:
     std::string const name;

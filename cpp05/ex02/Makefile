@@ -1,9 +1,12 @@
 CC = clang++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = BuroSecond
+NAME = BuroThree
 
 SRC = Bureaucrat.cpp \
 	  Form.cpp \
+	  ShrubberyCreationForm.cpp \
+	  RobotomyRequestForm.cpp \
+	  PresidentialPardonForm.cpp \
 	  main.cpp
 
 RM = rm -rf

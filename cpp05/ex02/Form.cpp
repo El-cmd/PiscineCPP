@@ -18,22 +18,22 @@ Form::~Form()
 }
 
 //ACCESSEUR
-std::string Form::getName()
+std::string Form::getName() const
 {
 	return (this->name);
 }
 
-bool Form::getIsSigned()
+bool Form::getIsSigned() const
 {
 	return (this->isSigned);
 }
 
-int Form::getGradeToSign()
+int Form::getGradeToSign() const
 {
 	return (this->gradeToSign);
 }
 
-int Form::getGradeToExecute()
+int Form::getGradeToExecute() const
 {
 	return (this->gradeToExecute);
 }
@@ -51,4 +51,14 @@ std::ostream &operator<<(std::ostream &out, Form &f)
 {
 	out << f.getName() << ", form grade to sign " << f.getGradeToSign() << ", form grade to execute " << f.getGradeToExecute();
 	return (out);
+}
+
+//EXECUTION DES FORMULAIRES
+
+void Form::execute(Bureaucrat const &executor) const
+{
+	if (executor.getGrade() > getGradeToExecute())
+		throw Form::GradeTooLowException();
+	if (getIsSigned() == false)
+		throw Form::GradeTooLowException();
 }

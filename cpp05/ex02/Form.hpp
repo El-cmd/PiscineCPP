@@ -11,13 +11,14 @@ class Form
 	Form();
 	Form(std::string n, int gts, int gte);
 	~Form();
-	std::string getName();
-	bool getIsSigned();
-	int getGradeToSign();
-	int getGradeToExecute();	
+	std::string getName() const;
+	bool getIsSigned() const;
+	int getGradeToSign() const;
+	int getGradeToExecute() const;
+	void execute(Bureaucrat const &executor) const;
 	void beSigned(Bureaucrat &v);
 
-	private:
+	protected:
 	std::string const name;
 	bool isSigned;
 	int const gradeToSign;

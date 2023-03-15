@@ -19,12 +19,12 @@ Bureaucrat::~Bureaucrat()
 }
 
 //ACCESSEUR
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
     return (this->grade);
 }
 
-std::string Bureaucrat::getName()
+std::string Bureaucrat::getName() const
 {
     return(this->name);
 }
@@ -63,4 +63,16 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat &b)
 {
     out << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
     return (out);
+}
+
+//EXECUTION DES FORMULAIRES
+void Bureaucrat::executeForm(Form const & form)
+{
+    if (form.getIsSigned() == false)
+        std::cout << this->name << " cannot execute " << form.getName() << " because the form is not signed\n";
+    else if (this->grade > form.getGradeToExecute())
+        std::cout << this->name << " cannot execute " << form.getName() << " because his grade is too low\n";
+    else
+        form.execute(*this);
+
 }

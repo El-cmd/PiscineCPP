@@ -3,9 +3,14 @@
 
 #include "Form.hpp"
 
-class RobotomyRequestForm
+class RobotomyRequestForm: public Form
 {
+	public:
+	RobotomyRequestForm(std::string t);
+	~RobotomyRequestForm();
 
+	private:
+	std::string target;
 };
 
 #endif

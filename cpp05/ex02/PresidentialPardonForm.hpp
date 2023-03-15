@@ -3,8 +3,14 @@
 
 #include "Form.hpp"
 
-class PresidentialPardonForm
+class PresidentialPardonForm: public Form
 {
+	public:
+	PresidentialPardonForm(std::string t);
+	~PresidentialPardonForm();
+
+	private:
+	std::string target;
 
 };
 
