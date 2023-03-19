@@ -26,8 +26,10 @@ void    PhoneBook::search()
     std::cout << " -------------------------------------------" << std::endl;
     std::cout << "|  INDEX   |FIRSTNAME | LASTNAME | NICKNAME |" << std::endl;
     std::cout << " -------------------------------------------" << std::endl;
-    while (m_contact[x].printOrNot())
+    while (1)
     {
+        if (x >= 8)
+            break ;
         m_contact[x].printindex();
         m_contact[x].printFname();
         m_contact[x].printLname();

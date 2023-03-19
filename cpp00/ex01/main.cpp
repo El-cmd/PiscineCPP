@@ -13,7 +13,8 @@ int main(void)
 		std::cout << ">>> \e[92;5;118mADD (Ajoute un contact)\e[0m | >>> \e[93;5;226mSEARCH (Affiche et recherche les contacts)\e[0m | >>> \033[00;31mEXIT (Quitte le menu)\033[00m" << std::endl;
 		std::cout << std::endl;
 		std::cout << ">>> ";
-		std::getline(std::cin, input);
+		if (!(std::getline(std::cin, input)))
+            break ;
 		std::cout << std::endl;
 		if (input == "ADD")
 		{
