@@ -2,17 +2,11 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-    this->hitPoint = 100;
-    this->EnergyP = 50;
-    this->AttackD = 20;
     std::cout << "ScavTrap default constructor called\n";
 }
 
 ScavTrap::ScavTrap(std::string n) : ClapTrap(n)
 {
-    this->hitPoint = 100;
-    this->EnergyP = 50;
-    this->AttackD = 20;
     std::cout << "ScavTrap Surcharge constructor called\n";
 }
 

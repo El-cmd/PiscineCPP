@@ -1,12 +1,13 @@
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 
 int main()
 {
-    std::string tab = "tobiie";
-    ClapTrap test(tab);
-    test.attack(tab);
-    test.takeDamage(11);
-    test.beRepaired(2);
+    ClapTrap mario("mario");
+    ClapTrap bowser("bowser");
+    mario.attack("bowser");
+    bowser.takeDamage(9);
+    bowser.attack("mario");
+    mario.takeDamage(9);
+    mario.beRepaired(2);
     return 0;
 }
