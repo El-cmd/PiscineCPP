@@ -56,7 +56,17 @@ void FragTrap::beRepaired(unsigned int amount)
     this->hitPoint += amount;
     std::cout << "FragTrap " << this->name << " recharges and retake " << amount << " life points, he still has " << this->hitPoint << std::endl;
 }
+
 void FragTrap::highFivesGuys()
 {
     std::cout << "Si tu pouvais faire un hight five à ce bg a coté de toi, Et oui jai brissé le 4e mures" << std::endl;
+}
+
+FragTrap &FragTrap::operator=( FragTrap &FP )
+{
+    this->name = FP.getname();
+    this->AttackD = FP.getAttak();
+    this->EnergyP = FP.getNrg();
+    this->hitPoint = FP.getHit();
+    return *this;
 }

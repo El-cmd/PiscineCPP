@@ -17,9 +17,11 @@ int main()
     alex.guardGate();
 
     FragTrap manu("manu");
-    
+    FragTrap jb("jb");
+    manu.takeDamage(10);
     manu.attack("patrick");
     manu.highFivesGuys();
-
+    jb = manu;
+    jb.takeDamage(20);
     return 0;
 }

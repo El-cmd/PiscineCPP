@@ -57,3 +57,12 @@ void ScavTrap::beRepaired(unsigned int amount)
     this->hitPoint += amount;
     std::cout << "ScavTrap " << this->name << " recharges and retake " << amount << " life points, he still has " << this->hitPoint << std::endl;
 }
+
+ScavTrap &ScavTrap::operator=( ScavTrap &SP )
+{
+    this->name = SP.getname();
+    this->AttackD = SP.getAttak();
+    this->EnergyP = SP.getNrg();
+    this->hitPoint = SP.getHit();
+    return *this;
+}

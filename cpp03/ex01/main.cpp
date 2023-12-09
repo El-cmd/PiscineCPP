@@ -10,9 +10,11 @@ int main()
     ethan.beRepaired(5);
 
     ScavTrap alex("alex");
-
+    ScavTrap Robert("Robert");
     alex.attack("jhon");
     alex.takeDamage(10);
     alex.guardGate();
+    Robert = alex;
+    Robert.takeDamage(10);
     return 0;
 }

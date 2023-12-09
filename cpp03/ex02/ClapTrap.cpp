@@ -76,3 +76,12 @@ void ClapTrap::attack(const std::string& target)
     this->EnergyP -= 1;
     std::cout << "ClapTrap "<< this->name << " attacks " << target << ", causing " << this->AttackD << " points of damage!\n";
 }
+
+ClapTrap   &ClapTrap::operator=( ClapTrap &CP )
+{
+    this->name = CP.getname();
+    this->AttackD = CP.getAttak();
+    this->EnergyP = CP.getNrg();
+    this->hitPoint = CP.getHit();
+    return *this;
+}
