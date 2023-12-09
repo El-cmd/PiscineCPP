@@ -10,6 +10,7 @@ class ClapTrap
         ClapTrap();
         ClapTrap(std::string n);
         ClapTrap(ClapTrap &copie);
+        ClapTrap   &operator=( ClapTrap &CP );
         int getHit();
         int getNrg();
         int getAttak();
