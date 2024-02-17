@@ -13,6 +13,8 @@ class Bureaucrat
     public:
     Bureaucrat();
     Bureaucrat(std::string n, int g);
+    Bureaucrat(Bureaucrat const &other);
+    Bureaucrat &operator=(Bureaucrat &other);
     ~Bureaucrat();
     void down();
     void up();
@@ -21,8 +23,8 @@ class Bureaucrat
 	void signForm(Form &f);
     
     private:
-    std::string const name;
-    int grade;
+    std::string const _name;
+    int _grade;
 
     public:
     class GradeTooHighException: public std::exception

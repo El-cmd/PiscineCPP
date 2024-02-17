@@ -1,17 +1,49 @@
 #include "Bureaucrat.hpp"
 
-int main()
+int main(void) 
 {
-    try
-    {
-        Bureaucrat b("Doc", 34);
-        std::cout << b;
-        b.up();
-        std::cout << b;
+    //Good
+	try 
+	{
+        Bureaucrat bureaucrat("bob", 2);
+        std::cout << bureaucrat << std::endl;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what();
+    catch (Bureaucrat::GradeTooHighException &e) 
+	{
+        std::cerr << "TooHighException" << std::endl;
     }
-    return 0;
+    catch (Bureaucrat::GradeTooLowException &e) 
+	{
+        std::cerr << "TooLowException" << std::endl;
+    }
+
+    try 
+	{
+        Bureaucrat bureaucrat1("bob", 1);
+        bureaucrat1.down();
+        std::cout << bureaucrat1 << std::endl;
+    }
+    catch (Bureaucrat::GradeTooHighException &e) 
+	{
+        std::cerr << "TooHighException" << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException &e) 
+	{
+        std::cerr << "TooLowException" << std::endl;
+    }
+
+    try 
+	{
+        Bureaucrat bureaucrat2("bob", 150);
+        bureaucrat2.up();
+        std::cout << bureaucrat2 << std::endl;
+    }
+    catch (Bureaucrat::GradeTooHighException &e) 
+	{
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException &e) 
+	{
+        std::cerr << e.what() << std::endl;
+    }
 }

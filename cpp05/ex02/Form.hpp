@@ -19,7 +19,7 @@ class Form
 	void beSigned(Bureaucrat &v);
 
 	protected:
-	std::string const name;
+	std::string const _name;
 	bool isSigned;
 	int const gradeToSign;
 	int const gradeToExecute;

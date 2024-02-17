@@ -1,15 +1,28 @@
 #include "Form.hpp"
 
-Form::Form(): name("Doc"), isSigned(false), gradeToSign(1), gradeToExecute(1)
+Form::Form(): _name("Doc"), isSigned(false), gradeToSign(1), gradeToExecute(1)
 {
 	std::cout << "Default Form constructor called\n";
 }
 
-Form::Form(std::string n, int gts, int gte): name(n), isSigned(false), gradeToSign(gts), gradeToExecute(gte)
+Form::Form(std::string n, int gts, int gte): _name(n), isSigned(false), gradeToSign(gts), gradeToExecute(gte)
 {
 	if (gts < 1 || gte < 1)
 		throw Form::GradeTooHighException();
 	std::cout << "Surcharge Form constructor called\n";
+}
+
+Form::Form(Form const &other): _name(other._name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute)
+{
+	if (other.gradeToExecute < 1 || other.gradeToSign < 1)
+		throw Form::GradeTooHighException();
+	std::cout << "Copy Form constructor called\n";
+}
+
+Form &Form::operator=(Form const &other)
+{
+	this->isSigned = other.isSigned;
+	return *this;
 }
 
 Form::~Form()
@@ -20,7 +33,7 @@ Form::~Form()
 //ACCESSEUR
 std::string Form::getName()
 {
-	return (this->name);
+	return (this->_name);
 }
 
 bool Form::getIsSigned()
@@ -49,6 +62,6 @@ void Form::beSigned(Bureaucrat &v)
 //OPERATEUR DE SURCHARGE
 std::ostream &operator<<(std::ostream &out, Form &f)
 {
-	out << f.getName() << ", form grade to sign " << f.getGradeToSign() << ", form grade to execute " << f.getGradeToExecute();
+	out << f.getName() << ", form grade to sign " << f.getGradeToSign() << ", form grade to execute " << f.getGradeToExecute() << std::endl;
 	return (out);
 }
