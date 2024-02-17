@@ -6,6 +6,23 @@ WrongCat::WrongCat() : WrongAnimal()
     std::cout << "Default WrongCat constructor called\n";
 }
 
+WrongCat::WrongCat(WrongCat &other)
+{
+    this->type = other.getType();
+    std::cout << "Copie WrongCat construtor called\n";
+}
+
+WrongCat &WrongCat::operator=(WrongCat &other)
+{
+    this->type = other.getType();
+    return *this;
+}
+
+std::string WrongCat::getType()
+{
+    return this->type;
+}
+
 WrongCat::~WrongCat()
 {
     std::cout << "Default WrongCat destructor called\n";

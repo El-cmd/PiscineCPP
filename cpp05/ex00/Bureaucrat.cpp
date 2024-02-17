@@ -1,8 +1,13 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(): name("Doc"), grade(1)
+Bureaucrat::Bureaucrat(): name("Doc"), grade(150)
 {
     std::cout << "Default Bureaucrat constructor called\n";
+}
+
+Bureaucrat::Bureaucrat(Bureaucrat &other)
+{
+    
 }
 
 Bureaucrat::Bureaucrat(std::string n, int g): name(n), grade(g)

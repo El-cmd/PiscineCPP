@@ -8,6 +8,8 @@ class Brain
 {
     public:
     Brain();
+    Brain(Brain &other);
+    Brain& operator=(Brain &other);
     ~Brain();
 
     private:

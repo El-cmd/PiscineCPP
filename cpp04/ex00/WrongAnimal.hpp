@@ -8,6 +8,9 @@ class WrongAnimal
 {
     public:
     WrongAnimal();
+    WrongAnimal(WrongAnimal &other);
+    WrongAnimal &operator=(WrongAnimal &other);
+    std::string getType() const;
     ~WrongAnimal();
     void makeSound() const;
     protected:

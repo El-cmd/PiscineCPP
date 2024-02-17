@@ -1,20 +1,21 @@
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = Animaux
+FLAGS = -Wall -Wextra -Werror -std=c++98 -g
+NAME = Materia
 
-SRC = Animal.cpp \
-	  Cat.cpp \
-	  Dog.cpp \
-	  WrongAnimal.cpp \
-	  WrongCat.cpp \
+SRC = AMateria.cpp \
+      Character.cpp \
+	  Cure.cpp \
+	  Ice.cpp \
+	  MateriaSource.cpp \
 	  main.cpp
+
 RM = rm -rf
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-		  $(CC) $(OBJ) -o $(NAME)
+		  $(CC) $(OBJ) -o $(NAME) -g
 		  @printf "\e[92;5;118m\n>>> Executable ready\n\e[0m"
 
 %.o : %.cpp

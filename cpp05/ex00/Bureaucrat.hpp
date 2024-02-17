@@ -9,7 +9,9 @@ class Bureaucrat
 {
     public:
     Bureaucrat();
+    Bureaucrat(Bureaucrat &other);
     Bureaucrat(std::string n, int g);
+    Bureaucrat &operator=(Bureaucrat & const other);
     ~Bureaucrat();
     void down();
     void up();

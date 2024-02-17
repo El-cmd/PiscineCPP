@@ -17,6 +17,8 @@ int main()
             animal[i] = new Cat();
         std::cout << "Animal ["<< i << "] has been created with ["<< animal[i]->getType() << "] type." << std::endl;
     }
+    Cat b;
+    Cat c(b);
 
     std::cout << "DEEP COPY!!" << std::endl;
 	std::cout << "-----------------------------" << std::endl;
