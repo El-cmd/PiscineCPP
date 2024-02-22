@@ -13,6 +13,8 @@ class Bureaucrat
     public:
     Bureaucrat();
     Bureaucrat(std::string n, int g);
+    Bureaucrat(Bureaucrat const &other);
+    Bureaucrat &operator=(Bureaucrat const &other);
     ~Bureaucrat();
     void down();
     void up();

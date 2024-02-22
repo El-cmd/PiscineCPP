@@ -14,12 +14,12 @@ class Bureaucrat
     Bureaucrat();
     Bureaucrat(std::string n, int g);
     Bureaucrat(Bureaucrat const &other);
-    Bureaucrat &operator=(Bureaucrat &other);
+    Bureaucrat &operator=(Bureaucrat const &other);
     ~Bureaucrat();
     void down();
     void up();
-    int getGrade();
-    std::string getName();
+    int getGrade() const;
+    const std::string getName() const;
 	void signForm(Form &f);
     
     private:

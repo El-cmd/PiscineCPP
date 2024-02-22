@@ -11,11 +11,11 @@ class Bureaucrat
     Bureaucrat();
     Bureaucrat(Bureaucrat const &other);
     Bureaucrat(std::string n, int g);
-    Bureaucrat &operator=(Bureaucrat & other);
+    Bureaucrat &operator=(Bureaucrat const &other);
     ~Bureaucrat();
     void down();
     void up();
-    int getGrade();
+    int getGrade() const;
     const std::string getName() const;
     
     private:

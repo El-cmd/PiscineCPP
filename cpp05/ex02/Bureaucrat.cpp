@@ -13,6 +13,26 @@ Bureaucrat::Bureaucrat(std::string n, int g): _name(n), _grade(g)
         throw Bureaucrat::GradeTooLowException();
     std::cout << "Surcharge constructor called\n";
 }
+
+Bureaucrat::Bureaucrat(Bureaucrat const &other): _name(other._name), _grade(other._grade)
+{
+    if (_grade < 1)
+        throw Bureaucrat::GradeTooHighException();
+    if (_grade > 150)
+        throw Bureaucrat::GradeTooLowException();
+    std::cout << "Copy Bureaucrat constructor called\n";
+}
+
+Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
+{
+    this->_grade = other.getGrade();
+    if (_grade < 1)
+        throw Bureaucrat::GradeTooHighException();
+    if (_grade > 150)
+        throw Bureaucrat::GradeTooLowException();  
+    return *this;
+}
+
 Bureaucrat::~Bureaucrat()
 {
     std::cout << "Default Bureaucrat destructor called\n";

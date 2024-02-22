@@ -13,10 +13,10 @@ class Form
 	Form(Form const &other);
 	Form &operator=(Form const &other);
 	~Form();
-	std::string getName();
-	bool getIsSigned();
-	int getGradeToSign();
-	int getGradeToExecute();	
+	const std::string getName() const;
+	bool getIsSigned() const;
+	int getGradeToSign() const;
+	int getGradeToExecute() const;	
 	void beSigned(Bureaucrat &v);
 
 	private:

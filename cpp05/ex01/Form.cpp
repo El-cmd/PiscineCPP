@@ -31,22 +31,22 @@ Form::~Form()
 }
 
 //ACCESSEUR
-std::string Form::getName()
+const std::string Form::getName() const
 {
 	return (this->_name);
 }
 
-bool Form::getIsSigned()
+bool Form::getIsSigned() const
 {
 	return (this->isSigned);
 }
 
-int Form::getGradeToSign()
+int Form::getGradeToSign() const
 {
 	return (this->gradeToSign);
 }
 
-int Form::getGradeToExecute()
+int Form::getGradeToExecute() const
 {
 	return (this->gradeToExecute);
 }

@@ -23,7 +23,7 @@ Bureaucrat::Bureaucrat(std::string n, int g): _name(n), _grade(g)
     std::cout << "Surcharge constructor called\n";
 }
 
-Bureaucrat &Bureaucrat::operator=(Bureaucrat &other)
+Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
 {
     this->_grade = other.getGrade();
     if (_grade < 1)
@@ -38,7 +38,7 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Default Bureaucrat destructor called\n";
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
     return (this->_grade);
 }
