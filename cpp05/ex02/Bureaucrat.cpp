@@ -11,7 +11,7 @@ Bureaucrat::Bureaucrat(std::string n, int g): _name(n), _grade(g)
         throw Bureaucrat::GradeTooHighException();
     if (g > 150)
         throw Bureaucrat::GradeTooLowException();
-    std::cout << "Surcharge constructor called\n";
+    std::cout << "Bureaucrat Surcharge constructor called\n";
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &other): _name(other._name), _grade(other._grade)
@@ -65,7 +65,7 @@ void Bureaucrat::up()
 }
 
 //SIGN FORM
-void Bureaucrat::signForm(Form &f)
+void Bureaucrat::signForm(AForm &f)
 {
     if (f.getGradeToSign() < this->_grade)
         std::cout << this->_name << " cannot sign " << f.getName() << " because his _grade is too low\n";
@@ -86,13 +86,16 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat &b)
 }
 
 //EXECUTION DES FORMULAIRES
-void Bureaucrat::executeForm(Form const & form)
+void Bureaucrat::executeForm(AForm const & form)
 {
     if (form.getIsSigned() == false)
-        std::cout << this->_name << " cannot execute " << form.getName() << " because the form is not signed\n";
+        std::cout << this->_name << " cannot execute " << form.getName() << " because his not signed\n";
     else if (this->_grade > form.getGradeToExecute())
         std::cout << this->_name << " cannot execute " << form.getName() << " because his _grade is too low\n";
     else
+    {
+        std::cout << this->getName() << " executed " << form.getName() << std::endl;
         form.execute(*this);
+    }
 
 }

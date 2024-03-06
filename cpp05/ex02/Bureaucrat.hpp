@@ -4,29 +4,37 @@
 #include <string>
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
     public:
+
+    /*---------coplian------------*/
     Bureaucrat();
     Bureaucrat(std::string n, int g);
     Bureaucrat(Bureaucrat const &other);
     Bureaucrat &operator=(Bureaucrat const &other);
     ~Bureaucrat();
-    void down();
-    void up();
+
+    /*---------getter------------*/
     int getGrade() const;
     std::string getName() const;
-	void signForm(Form &f);
-    void executeForm(Form const &form);
+
+    /*---------exec------------*/
+    void down();
+    void up();
+	void signForm(AForm &f);
+    void executeForm(AForm const &form);
     
     private:
     std::string const _name;
     int _grade;
 
+
+    /*---------exeptions------------*/
     public:
     class GradeTooHighException: public std::exception
     {

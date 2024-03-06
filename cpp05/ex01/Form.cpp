@@ -46,15 +46,7 @@ int Form::getGradeToSign() const
 	return (this->gradeToSign);
 }
 
-int Form::getGradeToExecute() const
-{
-	return (this->gradeToExecute);
-}
-
-//CHANGE LE LE STATUE DE LA FONCTION
-void Form::beSigned(Bureaucrat &v)
-{
-	if (v.getGrade() > getGradeToSign())
+int Form::getGradeToExecute() coclass AForm;Sign())
 		throw Form::GradeTooLowException();
 	this->isSigned = true;
 }

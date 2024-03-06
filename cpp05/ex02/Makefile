@@ -3,7 +3,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = BuroThree
 
 SRC = Bureaucrat.cpp \
-	  Form.cpp \
+      AForm.cpp \
 	  ShrubberyCreationForm.cpp \
 	  RobotomyRequestForm.cpp \
 	  PresidentialPardonForm.cpp \
