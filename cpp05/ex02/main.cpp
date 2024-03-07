@@ -8,20 +8,30 @@ int main()
 {
     try
     {
-         Bureaucrat  *bureaucrat = new Bureaucrat("Bureaucrat", 45);
-         AForm        *form = new PresidentialPardonForm("Form");
-         bureaucrat->signForm(*form);
-         bureaucrat->executeForm(*form);
-         delete bureaucrat;
-         delete form;
-         
-        Bureaucrat  *bureaucrat2 = new Bureaucrat("Bureaucrat", 45);
-        AForm        *form2 = new RobotomyRequestForm("Form");
+        Bureaucrat  *bureaucrat = new Bureaucrat("Bureaucrat", 2);
+        AForm        *form = new PresidentialPardonForm("Target");
         bureaucrat->signForm(*form);
-         bureaucrat->executeForm(*form);
-         delete bureaucrat2;
-         delete form2;
-        
+        bureaucrat->executeForm(*form);
+        delete bureaucrat;
+        delete form;
+
+        std::cout << "-------------" << std::endl;
+
+        Bureaucrat  *bureaucrat2 = new Bureaucrat("Bureaucrat2", 45);
+        AForm        *form2 = new RobotomyRequestForm("Target2");
+        bureaucrat->signForm(*form2);
+        bureaucrat->executeForm(*form2);
+        delete bureaucrat2;
+        delete form2;
+
+        std::cout << "-------------" << std::endl;
+
+        Bureaucrat *bureaucrat3 = new Bureaucrat("Bureaucrat3", 149);
+        AForm        *form3 = new ShrubberyCreationForm("Target3");
+        bureaucrat->signForm(*form3);
+        bureaucrat->executeForm(*form3);
+        delete bureaucrat3;
+        delete form3;
         
     }
     catch(const std::exception& e)

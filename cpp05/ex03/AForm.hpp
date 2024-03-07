@@ -2,6 +2,9 @@
 	#define AForm_HPP
 
 #include "Bureaucrat.hpp"
+#include <iostream>
+#include <string>
+#include <exception>
 
 class Bureaucrat;
 

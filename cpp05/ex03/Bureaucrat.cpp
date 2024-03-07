@@ -67,7 +67,6 @@ void Bureaucrat::up()
 //SIGN FORM
 void Bureaucrat::signForm(AForm &f)
 {
-
     f.beSigned(*this);
     if (f.getIsSigned())
         std::cout << this->_name << " signs " << f.getName() << std::endl;

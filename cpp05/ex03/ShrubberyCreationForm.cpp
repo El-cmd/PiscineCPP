@@ -2,6 +2,11 @@
 
 /*---------------coplian form-----------------*/
 
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("ShrubberyCreationForm", 72, 45), _target("Default")
+{
+	std::cout << "ShrubberyCreationForm created with default target" << std::endl;
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 	std::cout << "ShrubberyCreationForm created" << std::endl;

@@ -62,6 +62,6 @@ void AForm::beSigned(Bureaucrat &v)
 //OPERATEUR DE SURCHARGE
 std::ostream &operator<<(std::ostream &out, AForm &f)
 {
-	out << f.getName() << ", AForm grade to sign " << f.getGradeToSign() << ", AForm grade to execute " << f.getGradeToExecute() << std::endl;
+	out << "Name -> " << f.getName() << "\nGrade to Sign -> " << f.getGradeToSign() << "\nGrade ti Execute -> " << f.getGradeToExecute() << std::endl;
 	return (out);
 }

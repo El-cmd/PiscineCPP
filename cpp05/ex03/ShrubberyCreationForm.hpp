@@ -6,6 +6,7 @@
 
 class AForm;
 
+
 class ShrubberyCreationForm: public AForm
 {
 	public:

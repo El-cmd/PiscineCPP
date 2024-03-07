@@ -2,6 +2,11 @@
 
 /*---------------coplian form-----------------*/
 
+PresidentialPardonForm::PresidentialPardonForm(): AForm("PresidentialPardonForm", 25, 5), _target("Default")
+{
+	std::cout << "PresidentialPardonForm created with default target" << std::endl;
+}
+
 PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
 	std::cout << "PresidentialPardonForm created" << std::endl;

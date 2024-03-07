@@ -2,6 +2,11 @@
 
 /*---------------coplian form-----------------*/
 
+RobotomyRequestForm::RobotomyRequestForm(): AForm("RobotomyRequestForm", 72, 45), _target("Default")
+{
+	std::cout << "RobotomyRequestForm created with default target" << std::endl;
+}
+
 RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
 	std::cout << "RobotomyRequestForm created" << std::endl;
