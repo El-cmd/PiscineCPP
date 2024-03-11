@@ -1,14 +1,12 @@
 #include "ScalarConverter.hpp"
 
-
 int main(int ac, char **av)
 {
-    if (av == 2)
+    if (ac == 2)
     {
         ScalarConverter::convert(av[1]);
-        return 0;
+        return EXIT_SUCCESS;
     }
-    else if
-        std::cout << "Le programme ScalerConverter ne peut convertir qu'un parametre" << std::endl;
-    return 1;
+    std::cout << "Le programme ScalerConverter ne peut convertir qu'un parametre" << std::endl;
+    return EXIT_FAILURE;
 }
