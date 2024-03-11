@@ -130,7 +130,14 @@ void toDouble(const std::string &string)
     else if (!isprint(roundf(Double)))
         std::cout << C << "no displayable" << std::endl;
     else
-        std::cout << C << static_cast<char>(roundf(Double)) << std::endl;
+    {   
+        char c = static_cast<char>(roundf(Double));
+        std::cout << C << c << std::endl;
+    }
+    if (Double > static_cast<double>(INT_MAX) || Double < static_cast<double>(INT_MIN))
+        std::cout << II;
+    else
+        std::cout << I <<  static_cast<int>(roundf(Double)) << std::endl;
     std::cout << D << Double << std::endl;
 }
 
