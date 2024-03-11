@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <limits>
 #include <cmath>
+#include <iomanip>
 #include <cctype>
 #include <limits.h>
 
@@ -14,10 +15,6 @@ class ScalarConverter
 {
     public:
     static void convert(const std::string &toConvert);
-    //toChar(std::string &toConvert);
-    //toInt(std::string &toConvert);
-    //toFloat(std::string &toConvert);
-    //toDouble(std::string &toConvert);
 };
 
 
