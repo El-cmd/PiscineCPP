@@ -117,14 +117,21 @@ void toInt(const std::string &string)
     std::cout << I << i << std::endl;
 }
 
-void toFloat(const std::string &string)
-{
-    
-}
+//void toFloat(const std::string &string)
+//{
+//    
+//}
 
 void toDouble(const std::string &string)
 {
-
+    double Double = std::strtod(string.c_str(), NULL);
+    if (Double > static_cast<double>(CHAR_MAX) || Double < static_cast<double>(CHAR_MIN))
+        std::cout << CI;
+    else if (!isprint(roundf(Double)))
+        std::cout << C << "no displayable" << std::endl;
+    else
+        std::cout << C << static_cast<char>(roundf(Double)) << std::endl;
+    std::cout << D << Double << std::endl;
 }
 
 void ScalarConverter::convert(const std::string &toConvert)
@@ -138,8 +145,8 @@ void ScalarConverter::convert(const std::string &toConvert)
             break;
         case (IS_I):
             toInt(toConvert);
-        case (IS_F):
-            toFloat(toConvert);
+        //case (IS_F):
+        //    toFloat(toConvert);
         case (IS_D):
             toDouble(toConvert);
         default:
