@@ -2,16 +2,10 @@
 	#define ARRAY_HPP
 
 #include <iostream>
-
-class Array
-{
-	public:
-	Array();
-	
-
-
-	private:
-};
+#include "Array.tpp"
+#include <ctime>
+#include <cstdlib>
+#include <exception>
 
 
 #endif

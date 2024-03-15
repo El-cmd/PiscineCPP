@@ -2,8 +2,7 @@ CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = Array
 
-SRC = Array.cpp \
-      main.cpp
+SRC = main.cpp
 
 RM = rm -rf
 OBJ = $(SRC:.cpp=.o)
