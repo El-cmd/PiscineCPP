@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-template <class T> void swap( T &a, T &b)
+template <typename T> void swap( T &a, T &b)
 {
 	T tmp;
 	tmp = a;
@@ -12,14 +12,14 @@ template <class T> void swap( T &a, T &b)
 	b = tmp;
 }
 
-template <class T> T min( T &a, T &b)
+template <typename T> T min( T const &a, T const &b)
 {
 	if (a < b)
 		return a;
 	return b;
 }
 
-template <class T>T max(T &a, T &b)
+template <typename T> T max(T const &a, T const &b)
 {
 	if (a > b)
 		return a;
