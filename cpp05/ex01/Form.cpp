@@ -9,6 +9,8 @@ Form::Form(std::string n, int gts, int gte): _name(n), isSigned(false), gradeToS
 {
 	if (gts < 1 || gte < 1)
 		throw Form::GradeTooHighException();
+	else if (gts > 150 || gte > 150)
+		throw Form::GradeTooLowException();
 	std::cout << "Surcharge Form constructor called\n";
 }
 
@@ -16,6 +18,8 @@ Form::Form(Form const &other): _name(other._name), isSigned(other.isSigned), gra
 {
 	if (other.gradeToExecute < 1 || other.gradeToSign < 1)
 		throw Form::GradeTooHighException();
+	else if (other.gradeToExecute > 150 || other.gradeToSign > 150)
+		throw Form::GradeTooLowException();
 	std::cout << "Copy Form constructor called\n";
 }
 
@@ -46,9 +50,22 @@ int Form::getGradeToSign() const
 	return (this->gradeToSign);
 }
 
-int Form::getGradeToExecute() coclass AForm;Sign())
-		throw Form::GradeTooLowException();
-	this->isSigned = true;
+int Form::getGradeToExecute() const
+{
+	return (this->gradeToExecute);
+}
+
+void Form::beSigned(Bureaucrat &v)
+{
+	if (this->getIsSigned())
+        std::cout << v.getName() << " cannot sign " << this->getName() << " because his already sign\n";
+    else if (this->getGradeToSign() < v.getGrade())
+        std::cout << v.getName() << " cannot sign " << this->getName() << " because his _grade is too low\n";
+	else
+	{
+		this->isSigned = true;
+		std::cout << v.getName() << " signs " << this->getName() << std::endl;
+	}
 }
 
 //OPERATEUR DE SURCHARGE

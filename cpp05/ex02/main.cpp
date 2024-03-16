@@ -26,7 +26,7 @@ int main()
 
         std::cout << "-------------" << std::endl;
 
-        Bureaucrat *bureaucrat3 = new Bureaucrat("Bureaucrat3", 149);
+        Bureaucrat *bureaucrat3 = new Bureaucrat("Bureaucrat3", 130);
         AForm        *form3 = new ShrubberyCreationForm("Target3");
         bureaucrat->signForm(*form3);
         bureaucrat->executeForm(*form3);

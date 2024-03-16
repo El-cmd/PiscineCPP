@@ -67,15 +67,7 @@ void Bureaucrat::up()
 //SIGN FORM
 void Bureaucrat::signForm(Form &f)
 {
-    if (f.getGradeToSign() < this->_grade)
-        std::cout << this->_name << " cannot sign " << f.getName() << " because his _grade is too low\n";
-    else if (f.getIsSigned())
-        std::cout << this->_name << " cannot sign " << f.getName() << " because the form is already signed\n";
-    else
-    {
-        f.beSigned(*this);
-        std::cout << this->_name << " signs " << f.getName() << std::endl;
-    }
+    f.beSigned(*this);
 }
 
 //SURCHARGE OPERATEUR
