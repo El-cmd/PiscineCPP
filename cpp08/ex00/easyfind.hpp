@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <exception>
 #include <iterator>
 #include <vector>
 #include <list>
@@ -17,7 +18,7 @@ typename T::iterator easyfind(T& container, int n)
         }
         ++it;
     }
-    return container.end(); // Retourne un itérateur de fin si l'élément n'est pas trouvé
+    throw std::out_of_range("La valeur cherchée n'est pas dans le tableau\n");
 }
 
  #endif
