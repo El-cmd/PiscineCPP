@@ -74,7 +74,7 @@ int Span::longestSpan(void)
 }
 
 
-std::ostream & operator<<(std::ostream& os, Span &sp)
+std::ostream &operator<<(std::ostream& os,const Span &sp)
 {
 	std::vector<int>::const_iterator it = sp.getVector()->begin();
 	while (it != sp.getVector()->end())

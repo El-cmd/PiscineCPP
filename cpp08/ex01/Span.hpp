@@ -31,7 +31,7 @@ class Span
 
 };
 
-std::ostream &operator<<(std::ostream os, Span &sp);
+std::ostream &operator<<(std::ostream &os, const Span &sp);
 
 
 #endif
