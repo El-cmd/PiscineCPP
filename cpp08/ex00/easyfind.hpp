@@ -6,6 +6,7 @@
 #include <exception>
 #include <iterator>
 #include <vector>
+#include <algorithm>
 #include <list>
 
 template<typename T>
