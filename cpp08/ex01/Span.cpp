@@ -16,7 +16,7 @@ Span::Span(const Span &other)
 
 Span::~Span()
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default destructor called" << std::endl;
 }
 
 Span &Span::operator=(const Span &other)
@@ -37,10 +37,20 @@ void Span::addNumber(int n)
 		throw std::out_of_range("No place for more number\n");
 }
 
+void Span::addNumber(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end)
+{
+	if (_vector.size() > _n)
+		throw std::out_of_range("No place for more number\n");
+	else
+		this->_vector.insert(_vector.begin(), begin, end);
+}
+
 const std::vector<int> *Span::getVector(void) const
 {
 	return &_vector;
 }
+
+
 
 int Span::shortestSpan(void)
 {

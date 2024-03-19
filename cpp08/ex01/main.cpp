@@ -1,17 +1,41 @@
 #include "Span.hpp"
 
 
-int main(void)
+
+int main( void )
 {
-	Span test(12);
-	test.addNumber(12);
-	test.addNumber(-23);
-	test.addNumber(54);
-	test.addNumber(542);
-	test.addNumber(78);
-	test.addNumber(57);
-	std::cout << test.longestSpan() << std::endl;
-	std::cout << test.shortestSpan() << std::endl;
-	std::cout << test;
-	return 0;
+    std::cout << "---- TEST #1 -----" << std::endl;
+
+    Span sp = Span( 5 );
+
+    sp.addNumber( 6 );
+    sp.addNumber( 3 );
+    sp.addNumber( 9 );
+    sp.addNumber( 17 );
+    sp.addNumber( 11 );
+
+    std::cout << "sp: \n" << sp;
+
+    std::cout << "longestSpan: " << sp.longestSpan() << std::endl;
+    std::cout << "shortestSpan: " << sp.shortestSpan() << std::endl;
+
+    std::cout << "\n---- TEST #2 -----" << std::endl;
+
+    try {
+        std::vector<int>    l( 10000 );
+        std::srand( time ( NULL ) );
+        std::generate( l.begin(), l.end(), std::rand );
+
+        Span span( l.size() );
+
+        span.addNumber( l.begin(), l.end() );
+
+        std::cout << "Longest span: " << span.longestSpan() << std::endl;
+        std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
+        
+    } catch ( std::exception& e ) {
+        std::cout << e.what() << std::endl; 
+    }
+
+    return EXIT_SUCCESS;
 }
