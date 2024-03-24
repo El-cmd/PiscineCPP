@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <fstream>
 
 
 class BitcoinConverter
@@ -22,8 +23,8 @@ class BitcoinConverter
 
 	private:
 	BitcoinConverter();
-	std::map<std::string, float> data;
-	std::map<std::string, float> input;
+	std::map<std::string, float> _data;
+	std::map<std::string, float> _input;
 };
 
 
