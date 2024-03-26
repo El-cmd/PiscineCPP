@@ -7,10 +7,10 @@ int main(int ac, char **av)
 	{
 		if (ac == 2)
 		{
-			
+			BitcoinConverter test("input.csv");
 		}
 		else
-			throw std::invalid_argument("Need 2 arguments .exe and bsd");
+			throw std::invalid_argument("Need 1 arg : -> bsd");
 		return 0;
 	}
 	catch (const std::exception& e)

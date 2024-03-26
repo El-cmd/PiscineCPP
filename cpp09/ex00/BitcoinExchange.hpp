@@ -14,8 +14,8 @@ class BitcoinConverter
 	public:
 	// Coplien
 	BitcoinConverter(std::string input);
-	BitcoinConverter(const BitcoinConverter &other);
-	BitcoinConverter &operator=(const BitcoinConverter &other);
+	//BitcoinConverter(const BitcoinConverter &other);
+	//BitcoinConverter &operator=(const BitcoinConverter &other);
 
 	//getter
 
@@ -23,9 +23,11 @@ class BitcoinConverter
 
 	private:
 	BitcoinConverter();
-	std::map<std::string, float> _data;
-	std::map<std::string, float> _input;
+	std::map<std::string, std::string> _data;
+	std::map<std::string, std::string> _input;
 };
+
+
 
 
 #endif
