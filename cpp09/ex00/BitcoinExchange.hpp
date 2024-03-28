@@ -13,7 +13,9 @@ class BitcoinConverter
 {
 	public:
 	// Coplien
-	BitcoinConverter(std::string input);
+	BitcoinConverter(const std::string &input);
+	void initBdd(void);
+	void initInput(const std::string &input);
 	//BitcoinConverter(const BitcoinConverter &other);
 	//BitcoinConverter &operator=(const BitcoinConverter &other);
 
