@@ -2,12 +2,12 @@
 
 int main(int ac, char **av)
 {
-	(void)av;
 	try
 	{
 		if (ac == 2)
 		{
-			BitcoinConverter test("input.csv");
+			BitcoinConverter test(av[1]);
+			print(test.getInput());
 		}
 		else
 			throw std::invalid_argument("Need 1 arg : -> bsd");
