@@ -5,7 +5,10 @@ int main(int ac, char **av)
 	try
 	{
 		if (ac == 2)
+		{
 			BitcoinConverter test(av[1]);
+			test.Run();
+		}
 		else
 			throw std::invalid_argument("Need 1 arg : -> bsd");
 		return 0;

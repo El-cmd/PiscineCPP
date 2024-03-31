@@ -44,25 +44,36 @@ void BitcoinConverter::initInput(const std::string &input)
 		throw std::invalid_argument("Invalid file");
 }
 
-const std::multimap<std::string, std::string> &BitcoinConverter::getInput()
+const std::multimap<std::string, std::string> &BitcoinConverter::getInput(void)
 {
 	return this->_input;
 }
 
-const std::map<std::string, std::string> &BitcoinConverter::getData()
+const std::map<std::string, std::string> &BitcoinConverter::getData(void)
 {
 	return this->_data;
 }
 
-void BitcoinConverter::checkFloat(void)
+void BitcoinConverter::printDate(const std::string &Date)
 {
-	float tmp;
+	(void)Date;
+}
+
+void BitcoinConverter::printFloat(const float &Float)
+{
+	if (Float < 0)
+		std::cerr << ROUGE << "Invalid num => No negative number" << REINIT <<std::endl;
+	else if (Float > 1000)
+		std::cerr << ROUGE << "Invalid num => No number greater than 1000" << REINIT <<std::endl;
+}
+
+void BitcoinConverter::Run(void)
+{
 	std::multimap<std::string, std::string>::const_iterator it = this->_input.begin();
 	while (it != this->_input.end())
 	{
-		tmp = std::strtof(it->second.c_str(), NULL);
-		if (tmp < 0)
-			std::cerr << ROUGE << "Invalid => No negative number" << REINIT <<std::endl;
+		this->printDate(it->first);
+		this->printFloat(std::strtof(it->second.c_str(), NULL));
 		it++;
 	}
 
@@ -95,7 +106,6 @@ BitcoinConverter::BitcoinConverter(const std::string &input)
 {
 	this->initInput(input);
 	this->initBdd();
-	this->checkFloat();
 }
 
 BitcoinConverter::BitcoinConverter(void)
