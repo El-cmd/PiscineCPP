@@ -18,7 +18,7 @@ $(NAME) : $(OBJ)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
-	@printf "\033[00;31m\n>>> Object files removed.\n\033[00m"
+	@printf "\033[00;31m>>> Object files removed.\n\033[00m"
 	$(RM) $(OBJ)
 
 fclean :	clean
