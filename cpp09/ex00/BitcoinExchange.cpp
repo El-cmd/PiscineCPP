@@ -65,11 +65,14 @@ void BitcoinConverter::printFloat(const float &Float)
 		std::cerr << ROUGE << "Invalid num => No negative number" << REINIT <<std::endl;
 	else if (Float > 1000)
 		std::cerr << ROUGE << "Invalid num => No number greater than 1000" << REINIT <<std::endl;
+	else
+		std::cout << " => " << Float << " = " << std::endl;
 }
 
 void BitcoinConverter::Run(void)
 {
 	std::multimap<std::string, std::string>::const_iterator it = this->_input.begin();
+	print(this->getInput());
 	while (it != this->_input.end())
 	{
 		this->printDate(it->first);
