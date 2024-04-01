@@ -30,26 +30,24 @@ class BitcoinConverter
 	public:
 	// Coplien
 	BitcoinConverter(const std::string &input);
-	const std::multimap<std::string, std::string> &getInput(void);
+	const std::string &getInput(void);
 	const std::map<std::string, std::string> &getData(void);
 	//BitcoinConverter(const BitcoinConverter &other);
 	//BitcoinConverter &operator=(const BitcoinConverter &other);
 
 	//getter
 	void initBdd(void);
-	void initInput(const std::string &input);
-	void printFloat(const float &Float);
-	void printDate(const std::string &Date);
 	void Run(void);
+	void printResult(const float &Float, const std::string &Date);
 
 	//Member Functions
 	private:
-	BitcoinConverter();
+	BitcoinConverter(void);
 	std::map<std::string, std::string> _data;
-	std::multimap<std::string, std::string> _input;
+	const std::string _input; 
 };
 
-void print(const std::multimap<std::string, std::string> &input); // Ne pas oublier de la suppr
+//void print(const std::multimap<std::string, std::string> &input); // Ne pas oublier de la suppr
 std::string trim(const std::string& str);
 
 

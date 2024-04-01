@@ -1,5 +1,18 @@
 #include "BitcoinExchange.hpp"
 
+// +++++++++++++++++++++++++++ Constructeur +++++++++++++++++++++++++++++++++ //
+BitcoinConverter::BitcoinConverter(const std::string &input): _input(input)
+{
+	this->initBdd();
+}
+
+BitcoinConverter::BitcoinConverter(void)
+{
+	std::cout << "Default constructor called" << std::endl;
+}
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
+// ++++++++++++++++++ Base de données dans la map +++++++++++++++++++++++++++ //
 void BitcoinConverter::initBdd(void)
 {
 	std::ifstream in("data.csv");
@@ -20,10 +33,23 @@ void BitcoinConverter::initBdd(void)
 		in.close();
 	}
 }
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
-void BitcoinConverter::initInput(const std::string &input)
+
+// +++++++++++++++++++++++++ execution ++++++++++++++++++++++++++++++++++++++ //
+void BitcoinConverter::printResult(const float &Float, const std::string &Date)
 {
-	std::ifstream inn(input.c_str());
+	if (Float < 0)
+		std::cerr << ROUGE << "Invalid num => No negative number" << REINIT <<std::endl;
+	else if (Float > 1000)
+		std::cerr << ROUGE << "Invalid num => No number greater than 1000" << REINIT <<std::endl;
+	else
+		std::cout << Date << " => " << Float << " = " << std::endl;
+}
+
+void BitcoinConverter::Run(void)
+{
+	std::ifstream inn(this->_input.c_str());
 	std::string buff;
 	std::string date;
 	std::string valeur;
@@ -36,7 +62,7 @@ void BitcoinConverter::initInput(const std::string &input)
 			i = buff.find("|");
 			date = trim(buff.substr(0, i));
 			valeur = trim(buff.substr(i + 1, buff.size()));
-			this->_input.insert(std::make_pair(date, valeur)); //fait des clefs.valeurs pour le multimap 
+			this->printResult(std::strtof(valeur.c_str(), NULL), date);
 		}
 		inn.close();
 	}
@@ -44,54 +70,17 @@ void BitcoinConverter::initInput(const std::string &input)
 		throw std::invalid_argument("Invalid file");
 }
 
-const std::multimap<std::string, std::string> &BitcoinConverter::getInput(void)
-{
-	return this->_input;
-}
-
+// ++++++++++++++++++++++++ getter +++++++++++++++++++++++++++++++++++++++ //
 const std::map<std::string, std::string> &BitcoinConverter::getData(void)
 {
 	return this->_data;
 }
 
-void BitcoinConverter::printDate(const std::string &Date)
+const std::string &BitcoinConverter::getInput(void)
 {
-	(void)Date;
+	return this->_input;
 }
-
-void BitcoinConverter::printFloat(const float &Float)
-{
-	if (Float < 0)
-		std::cerr << ROUGE << "Invalid num => No negative number" << REINIT <<std::endl;
-	else if (Float > 1000)
-		std::cerr << ROUGE << "Invalid num => No number greater than 1000" << REINIT <<std::endl;
-	else
-		std::cout << " => " << Float << " = " << std::endl;
-}
-
-void BitcoinConverter::Run(void)
-{
-	std::multimap<std::string, std::string>::const_iterator it = this->_input.begin();
-	print(this->getInput());
-	while (it != this->_input.end())
-	{
-		this->printDate(it->first);
-		this->printFloat(std::strtof(it->second.c_str(), NULL));
-		it++;
-	}
-
-}
-
-// +++++++++++++++++++++++++ Fonction à supprimer +++++++++++++++++++++++++++ //
-void print(const std::multimap<std::string, std::string> &input) //Pour print une mutlimap
-{
-	std::multimap<std::string, std::string>::const_iterator it = input.begin();
-	while (it != input.end())
-	{
-		std::cout << it->first << "===>" << it->second << std::endl;
-		it++;
-	}
-}
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // Fonction pour élaguer les espaces blancs au début et à la fin d'une chaîne
 std::string trim(const std::string& str) 
@@ -104,15 +93,3 @@ std::string trim(const std::string& str)
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
-// +++++++++++++++++++++++++++ Constructeur +++++++++++++++++++++++++++++++++ //
-BitcoinConverter::BitcoinConverter(const std::string &input)
-{
-	this->initInput(input);
-	this->initBdd();
-}
-
-BitcoinConverter::BitcoinConverter(void)
-{
-	std::cout << "Default constructor called" << std::endl;
-}
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
