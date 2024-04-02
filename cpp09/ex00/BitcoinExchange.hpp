@@ -31,16 +31,19 @@ class BitcoinConverter
 	// Coplien
 	BitcoinConverter(const std::string &input);
 	const std::string &getInput(void);
-	const std::map<std::string, std::string> &getData(void);
 	//BitcoinConverter(const BitcoinConverter &other);
 	//BitcoinConverter &operator=(const BitcoinConverter &other);
 
 	//getter
+	const std::map<std::string, std::string> &getData(void);
+
+
+	//Member Functions
+	float  Compare(const std::string &date, const float &Float);
 	void initBdd(void);
 	void Run(void);
 	void printResult(const float &Float, const std::string &Date);
 
-	//Member Functions
 	private:
 	BitcoinConverter(void);
 	std::map<std::string, std::string> _data;

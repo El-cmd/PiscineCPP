@@ -37,14 +37,29 @@ void BitcoinConverter::initBdd(void)
 
 
 // +++++++++++++++++++++++++ execution ++++++++++++++++++++++++++++++++++++++ //
+float  BitcoinConverter::Compare(const std::string &date, const float &Float)
+{
+	float result;
+	std::map<std::string, std::string>::iterator it = this->_data.begin();
+	while (it->first < date && it != _data.end())
+		it++;
+	result = Float * std::strtof(it->second.c_str(), NULL);
+	if (it->first == date)
+		return result;
+	else
+		it--;
+	result = Float * std::strtof(it->second.c_str(), NULL);
+	return result;
+}
+
 void BitcoinConverter::printResult(const float &Float, const std::string &Date)
 {
 	if (Float < 0)
-		std::cerr << ROUGE << "Invalid num => No negative number" << REINIT <<std::endl;
+		std::cerr << ROUGE << "Error: not a positive number" << REINIT <<std::endl;
 	else if (Float > 1000)
-		std::cerr << ROUGE << "Invalid num => No number greater than 1000" << REINIT <<std::endl;
+		std::cerr << ROUGE << "Error: too large number" << REINIT <<std::endl;
 	else
-		std::cout << Date << " => " << Float << " = " << std::endl;
+		std::cout << Date << " => " << Float << " = " << this->Compare(Date, Float) << std::endl;
 }
 
 void BitcoinConverter::Run(void)
