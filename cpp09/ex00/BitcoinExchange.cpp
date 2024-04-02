@@ -41,6 +41,11 @@ float  BitcoinConverter::Compare(const std::string &date, const float &Float)
 {
 	float result;
 	std::map<std::string, std::string>::iterator it = this->_data.begin();
+	if (it->first > date)
+	{
+		result = Float * std::strtof(it->second.c_str(), NULL);
+		return result;
+	}
 	while (it->first < date && it != _data.end())
 		it++;
 	result = Float * std::strtof(it->second.c_str(), NULL);
