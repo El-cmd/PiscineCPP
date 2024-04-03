@@ -35,36 +35,84 @@ void BitcoinConverter::initBdd(void)
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
+// ++++++++++ Securité ++++++++ //
+
+float BitcoinConverter::protectStrtof(const char *strIt)
+{
+	char *endptr;
+	float result = std::strtof(strIt, &endptr);
+	float a = -1;
+	if ((endptr == strIt) || (*endptr != '\0') || (errno == ERANGE && (result == FLT_MAX || result == -FLT_MAX)) \
+		|| (errno == ERANGE && result == 0))
+        return a;
+	return result;
+}
+
+int BitcoinConverter::protectDate(const std::string &date)
+{
+	if (date.size() != 10)
+	{
+		std::cerr << ROUGE << "Error Bad input => " << date << REINIT << std::endl;
+		return 1;
+	}
+	std::string Year;
+	std::string Month;
+	std::string Day;
+	int i = 0;
+	int delim = 0;
+	while (date[i])
+	{
+		if (delim == 0)
+			Year = Year + date[i];
+		else if (delim == 1)
+			Month = Month + date[i];
+		else if ( delim == 2)
+			Day = Day + date[i];
+		if (date[i] == '-')
+			delim++;
+		i++;
+	}
+	if (delim != 2 || (Month < "01" || Month > "13") || (Day < "01" || Day > "31") || (Year > "2023"))
+	{
+		std::cerr << ROUGE << "Error Bad input => " << date << REINIT << std::endl;
+		return 1;
+	}
+	return 0;
+}
+
 
 // +++++++++++++++++++++++++ execution ++++++++++++++++++++++++++++++++++++++ //
 float  BitcoinConverter::Compare(const std::string &date, const float &Float)
 {
-	float result;
 	std::map<std::string, std::string>::iterator it = this->_data.begin();
+	std::map<std::string, std::string>::iterator ite = this->_data.end();
+	ite --;
 	if (it->first > date)
-	{
-		result = Float * std::strtof(it->second.c_str(), NULL);
-		return result;
-	}
+		return Float * protectStrtof(it->second.c_str());
+	if (ite->first < date)
+		return Float * protectStrtof(ite->second.c_str());
 	while (it->first < date && it != _data.end())
 		it++;
-	result = Float * std::strtof(it->second.c_str(), NULL);
 	if (it->first == date)
-		return result;
+		return Float * protectStrtof(it->second.c_str());
 	else
 		it--;
-	result = Float * std::strtof(it->second.c_str(), NULL);
-	return result;
+	return Float * protectStrtof(it->second.c_str());
 }
 
 void BitcoinConverter::printResult(const float &Float, const std::string &Date)
 {
-	if (Float < 0)
+	if (protectDate(Date))
+		return ;
+	float result = this->Compare(Date, Float);
+	if (result == -1)
+			std::cerr << ROUGE << "Error: Invalid number" << REINIT << std::endl;
+	else if (Float < 0)
 		std::cerr << ROUGE << "Error: not a positive number" << REINIT <<std::endl;
 	else if (Float > 1000)
-		std::cerr << ROUGE << "Error: too large number" << REINIT <<std::endl;
+		std::cerr << ROUGE << "Error: too large number" << REINIT << std::endl;
 	else
-		std::cout << Date << " => " << Float << " = " << this->Compare(Date, Float) << std::endl;
+			std::cout << Date << " => " << Float << " = " << result << std::endl;
 }
 
 void BitcoinConverter::Run(void)
@@ -80,9 +128,14 @@ void BitcoinConverter::Run(void)
 		while (getline(inn, buff))
 		{
 			i = buff.find("|");
-			date = trim(buff.substr(0, i));
-			valeur = trim(buff.substr(i + 1, buff.size()));
-			this->printResult(std::strtof(valeur.c_str(), NULL), date);
+			if (i != std::string::npos)
+			{
+				date = trim(buff.substr(0, i));
+				valeur = trim(buff.substr(i + 1, buff.size()));
+				this->printResult(std::strtof(valeur.c_str(), NULL), date);
+			}
+			else
+				std::cerr << ROUGE << "Error: Invalid line" << REINIT << std::endl;
 		}
 		inn.close();
 	}

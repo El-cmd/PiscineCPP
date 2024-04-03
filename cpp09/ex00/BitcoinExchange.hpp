@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <cfloat>
 #include <fstream>
 #include <cctype>
 #include <cstdlib>
@@ -30,21 +31,23 @@ class BitcoinConverter
 	public:
 	// Coplien
 	BitcoinConverter(const std::string &input);
-	const std::string &getInput(void);
 	//BitcoinConverter(const BitcoinConverter &other);
 	//BitcoinConverter &operator=(const BitcoinConverter &other);
 
 	//getter
+	const std::string &getInput(void);
 	const std::map<std::string, std::string> &getData(void);
 
 
 	//Member Functions
-	float  Compare(const std::string &date, const float &Float);
-	void initBdd(void);
 	void Run(void);
-	void printResult(const float &Float, const std::string &Date);
 
 	private:
+	int protectDate(const std::string &date);
+	float protectStrtof(const char *strIt);
+	void initBdd(void);
+	void printResult(const float &Float, const std::string &Date);
+	float  Compare(const std::string &date, const float &Float);
 	BitcoinConverter(void);
 	std::map<std::string, std::string> _data;
 	const std::string _input; 

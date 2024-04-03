@@ -1,7 +1,6 @@
 #ifndef SPAN_HPP
 	#define SPAN_HPP
 
-#pragma once
 
 #include <string>
 #include <iostream>
