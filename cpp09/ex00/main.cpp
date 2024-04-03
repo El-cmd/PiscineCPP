@@ -10,12 +10,12 @@ int main(int ac, char **av)
 			test.Run();
 		}
 		else
-			throw std::invalid_argument("Need 1 arg : -> bsd");
+			throw std::invalid_argument("Need 1 arg : => Input");
 		return 0;
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cerr << ROUGE << "Error: " << e.what() << REINIT << std::endl;
 	}
 	return 0;
 }

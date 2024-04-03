@@ -13,6 +13,11 @@
 #define CYAN "\033[36m"
 #define BLANC "\033[37m" 
 
+#include <string>
+#include <iostream>
+#include <exception>
+
+
 class RPN
 {
 	public:
