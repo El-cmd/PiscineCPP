@@ -32,6 +32,8 @@ void BitcoinConverter::initBdd(void)
 		}
 		in.close();
 	}
+	else
+		throw std::logic_error("No data.csv in this folder");
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
@@ -156,7 +158,7 @@ const std::string &BitcoinConverter::getInput(void)
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // Fonction pour élaguer les espaces blancs au début et à la fin d'une chaîne
-std::string trim(const std::string& str) 
+std::string BitcoinConverter::trim(const std::string& str) 
 {
     size_t first = str.find_first_not_of(' ');
     if (first == std::string::npos)

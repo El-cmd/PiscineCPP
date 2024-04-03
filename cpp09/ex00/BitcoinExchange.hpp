@@ -49,6 +49,7 @@ class BitcoinConverter
 	void printResult(const float &Float, const std::string &Date);
 	float  Compare(const std::string &date, const float &Float);
 	BitcoinConverter(void);
+	std::string trim(const std::string& str);
 	std::map<std::string, std::string> _data;
 	const std::string _input; 
 };
