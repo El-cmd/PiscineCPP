@@ -16,7 +16,7 @@
 #include <string>
 #include <iostream>
 #include <exception>
-#include <list>
+#include <queue>
 
 
 class RPN
@@ -24,16 +24,18 @@ class RPN
 	public:
 	/* +++ Coplien Form +++ */
 	RPN(const std::string &av);
-	RPN(const RPN &other);
-	RPN &operator=(const RPN &other);
 
 
 	private:
 	/* ++++++ Members functions ++++++*/
-	void secureAv(const std::string &av);
-	
-	std::list<int> _Liste;
+	RPN &operator=(const RPN &other);
+	RPN(const RPN &other);
+	void initQueue(std::string tmp);
+	std::string trim(const std::string& str);
+	std::string secureAv(const std::string &av);
+	std::queue<int> _stack;
 	RPN();
+	bool isSign(char c);
 };
 
 #endif
