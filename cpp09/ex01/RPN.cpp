@@ -71,7 +71,20 @@ std::string RPN::secureAv(const std::string &av)
 /* ++++++ Init data ++++++++++ */
 void RPN::initQueue(std::string tmp)
 {
-	(void)tmp;
+	int i = tmp.length() - 1;
+	while (i >= 0)
+	{
+		if (isdigit(tmp[i]))
+			this->_stack.push(tmp[i] - '0');
+		i--;
+	}
+}
+/* +++++++++++++++++++++++++++ */
+
+/* ++++++ Execution +++++ */
+void RPN::Run(void)
+{
+	
 }
 
-/* +++++++++++++++++++++++++++ */
+/* +++++++++++++++++++++++ */

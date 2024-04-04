@@ -16,7 +16,7 @@
 #include <string>
 #include <iostream>
 #include <exception>
-#include <queue>
+#include <stack>
 
 
 class RPN
@@ -24,6 +24,7 @@ class RPN
 	public:
 	/* +++ Coplien Form +++ */
 	RPN(const std::string &av);
+	void Run(void);
 
 
 	private:
@@ -33,7 +34,7 @@ class RPN
 	void initQueue(std::string tmp);
 	std::string trim(const std::string& str);
 	std::string secureAv(const std::string &av);
-	std::queue<int> _stack;
+	std::stack<int> _stack;
 	RPN();
 	bool isSign(char c);
 };

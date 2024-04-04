@@ -7,6 +7,7 @@ int main(int ac, char **av)
 		if (ac == 2)
 		{
 			RPN Calcule(av[1]);
+			Calcule.Run();
 		}
 		else
 			throw std::invalid_argument("The RPN needs 2 arguments");
