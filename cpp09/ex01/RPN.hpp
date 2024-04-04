@@ -16,14 +16,24 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include <list>
 
 
 class RPN
 {
 	public:
+	/* +++ Coplien Form +++ */
+	RPN(const std::string &av);
+	RPN(const RPN &other);
+	RPN &operator=(const RPN &other);
+
 
 	private:
-
+	/* ++++++ Members functions ++++++*/
+	void secureAv(const std::string &av);
+	
+	std::list<int> _Liste;
+	RPN();
 };
 
 #endif

@@ -6,8 +6,8 @@ int main(int ac, char **av)
 	{
 		if (ac == 2)
 		{
-			BitcoinConverter test(av[1]);
-			test.Run();
+			BitcoinConverter Conversion(av[1]);
+			Conversion.Run();
 		}
 		else
 			throw std::invalid_argument("Need 1 arg : => Input");
