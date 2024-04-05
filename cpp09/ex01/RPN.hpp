@@ -11,30 +11,35 @@
 #define BLEU "\033[34m"
 #define MAGENTA "\033[35m"
 #define CYAN "\033[36m"
-#define BLANC "\033[37m" 
+#define BLANC "\033[37m"
+
 
 #include <string>
 #include <iostream>
 #include <exception>
 #include <stack>
 
+#define DIV '/'
+#define MULT '*'
+#define ADD '+'
+#define SOUS '-'
 
 class RPN
 {
 	public:
-	/* +++ Coplien Form +++ */
 	RPN(const std::string &av);
 	void Run(void);
 
 
 	private:
-	/* ++++++ Members functions ++++++*/
+	int calcul(int a, int b, char c);
 	RPN &operator=(const RPN &other);
 	RPN(const RPN &other);
 	void initQueue(std::string tmp);
 	std::string trim(const std::string& str);
 	std::string secureAv(const std::string &av);
 	std::stack<int> _stack;
+	std::stack<char> _sign;
 	RPN();
 	bool isSign(char c);
 };

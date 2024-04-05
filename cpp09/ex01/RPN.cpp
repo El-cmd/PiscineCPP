@@ -76,15 +76,45 @@ void RPN::initQueue(std::string tmp)
 	{
 		if (isdigit(tmp[i]))
 			this->_stack.push(tmp[i] - '0');
+		else if (isSign(tmp[i]))
+			this->_sign.push(tmp[i]);
 		i--;
 	}
 }
 /* +++++++++++++++++++++++++++ */
 
 /* ++++++ Execution +++++ */
+
+int RPN::calcul(int a, int b, char c)
+{
+	if (c == SOUS)
+		return a - b;
+	else if (c == ADD)
+		return a + b;
+	else if (c == MULT)
+		return a * b;
+	else if (c == DIV)
+	{
+		if (b == 0)
+			throw std::logic_error("No division by zero");
+		else
+			return a / b;
+	}
+	return 0;
+}
+
 void RPN::Run(void)
 {
-	
+	int result;
+	result = this->_stack.top();
+	this->_stack.pop();
+	while(!this->_sign.empty())
+	{
+		result = calcul(result, this->_stack.top(), this->_sign.top());
+		this->_sign.pop();
+		this->_stack.pop();
+	}
+	std::cout << VERT << result << REINIT << std::endl;
 }
 
 /* +++++++++++++++++++++++ */
