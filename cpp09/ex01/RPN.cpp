@@ -1,10 +1,9 @@
 #include "RPN.hpp"
 
 /*+++++++++ Coplian Form ++++++++++++++++*/
+
 RPN::RPN()
-{
-	std::cout << "Default Constructor called" << std::endl;
-}
+{}
 
 RPN::RPN(const std::string &av)
 {
@@ -13,17 +12,21 @@ RPN::RPN(const std::string &av)
 
 RPN::RPN(const RPN &other)
 {
-	(void)other;
+	*this = other;
 }
 
 RPN &RPN::operator=(const RPN &other)
 {
 	if (this != &other)
 	{
-
+		*this = other;
 	}
 	return *this;
 }
+
+RPN::~RPN(void)
+{}
+
 /*++++++++++++++++++++++++++++++++++++++++*/
 
 /* +++++++++++Utils functions ++++++++++++*/
@@ -108,7 +111,7 @@ void RPN::Run(void)
 	int result;
 	result = this->_stack.top();
 	this->_stack.pop();
-	while(!this->_sign.empty())
+	while(!this->_sign.empty() && !this->_stack.empty())
 	{
 		result = calcul(result, this->_stack.top(), this->_sign.top());
 		this->_sign.pop();

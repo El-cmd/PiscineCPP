@@ -29,6 +29,7 @@ class RPN
 	public:
 	RPN(const std::string &av);
 	void Run(void);
+	~RPN(void);
 
 
 	private:
