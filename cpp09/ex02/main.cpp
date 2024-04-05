@@ -7,7 +7,7 @@ int main(int ac, char **av)
 	{
 		if (ac == 2)
 		{
-		
+			PmergeMe Tri(av[1]);
 		}
 		else
 			throw std::invalid_argument("The PmergeMe program needs one argument");

@@ -54,7 +54,7 @@ std::string RPN::secureAv(const std::string &av)
 	int i = 0;
 	tmp = trim(av);
 	if (tmp.empty())
-		throw std::invalid_argument("Arguments is empty");
+		throw std::invalid_argument("Argument is empty");
 	if ((!isdigit(tmp[0]) || !isdigit(tmp[2])) || !isSign(tmp[tmp.length() - 1]))
 		throw std::invalid_argument("Not a valid input");
 	while (tmp[i])
@@ -113,7 +113,7 @@ void RPN::Run(void)
 	int result;
 	result = this->_stack.top();
 	this->_stack.pop();
-	while(!this->_sign.empty())
+	while(!this->_sign.empty() && !this->_stack.empty())
 	{
 		result = calcul(result, this->_stack.top(), this->_sign.top());
 		this->_sign.pop();

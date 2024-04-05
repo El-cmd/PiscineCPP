@@ -15,12 +15,26 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include <vector>
 
 class PmergeMe
 {
 	public:
+	/* ++++++++ constructor && destructor ++++++*/
+	PmergeMe(const std::string &av);
+	~PmergeMe(void);
+	/*++++++++++++++++++++++++++++++++++++++++++*/
 
 	private:
+
+	/*++++++++++++++ Coplien Form ++++++++++++++*/
+	PmergeMe &operator=(const PmergeMe &other);
+	PmergeMe(const PmergeMe &other);
+	PmergeMe(void);
+	/*++++++++++++++++++++++++++++++++++++++++++*/
+	std::string secureAv(const std::string &av);
+	std::string trim(const std::string& str); 
+	std::vector<int> _vector;
 };
 
 
