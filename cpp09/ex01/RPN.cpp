@@ -90,6 +90,8 @@ void RPN::initQueue(std::string tmp)
 
 int RPN::calcul(int a, int b, char c)
 {
+	// if (this->_stack.empty() && !this->_sign.empty())
+		// return a;
 	if (c == SOUS)
 		return a - b;
 	else if (c == ADD)
@@ -103,7 +105,7 @@ int RPN::calcul(int a, int b, char c)
 		else
 			return a / b;
 	}
-	return 0;
+	return a;
 }
 
 void RPN::Run(void)
@@ -111,7 +113,7 @@ void RPN::Run(void)
 	int result;
 	result = this->_stack.top();
 	this->_stack.pop();
-	while(!this->_sign.empty() && !this->_stack.empty())
+	while(!this->_sign.empty())
 	{
 		result = calcul(result, this->_stack.top(), this->_sign.top());
 		this->_sign.pop();

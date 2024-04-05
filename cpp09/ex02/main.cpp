@@ -1,16 +1,16 @@
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
 int main(int ac, char **av)
 {
+	(void)av;
 	try
 	{
 		if (ac == 2)
 		{
-			RPN Calcule(av[1]);
-			Calcule.Run();
+		
 		}
 		else
-			throw std::invalid_argument("The RPN program needs one argument");
+			throw std::invalid_argument("The PmergeMe program needs one argument");
 		return 0;
 	}
 	catch(const std::exception& e)
