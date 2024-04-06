@@ -16,12 +16,17 @@
 #include <iostream>
 #include <exception>
 #include <vector>
+#include <sstream>
+#include <climits>
+#include <cstdlib>
+#include <list>
 
 class PmergeMe
 {
 	public:
 	/* ++++++++ constructor && destructor ++++++*/
 	PmergeMe(const std::string &av);
+	void printBefore(bool val);
 	~PmergeMe(void);
 	/*++++++++++++++++++++++++++++++++++++++++++*/
 
@@ -33,8 +38,10 @@ class PmergeMe
 	PmergeMe(void);
 	/*++++++++++++++++++++++++++++++++++++++++++*/
 	std::string secureAv(const std::string &av);
-	std::string trim(const std::string& str); 
+	std::string trim(const std::string& str);
+	void initContainers(std::string tmp);
 	std::vector<int> _vector;
+	std::list<int> _list;
 };
 
 
