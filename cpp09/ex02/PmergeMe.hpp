@@ -20,15 +20,17 @@
 #include <climits>
 #include <cstdlib>
 #include <list>
+#include <algorithm>
 
 class PmergeMe
 {
 	public:
 	/* ++++++++ constructor && destructor ++++++*/
 	PmergeMe(const std::string &av);
-	void printBefore(bool val); // affiche false _vector/true _list 
 	~PmergeMe(void);
 	/*++++++++++++++++++++++++++++++++++++++++++*/
+	void printBefore(bool val); // affiche false _vector/true _list 
+	void Run(void);
 
 	private:
 
@@ -40,7 +42,8 @@ class PmergeMe
 	std::string secureAv(const std::string &av);
 	std::string trim(const std::string& str);
 	void initContainers(std::string tmp);
-	void alreadySorted(void);
+	void secureDouble(void);
+	int alreadySorted(void);
 	std::vector<int> _vector;
 	std::list<int> _list;
 };

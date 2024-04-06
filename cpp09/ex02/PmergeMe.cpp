@@ -5,7 +5,9 @@
 PmergeMe::PmergeMe(const std::string &av)
 {
 	initContainers(secureAv(av));
-	printBefore(0);
+	secureDouble();
+	if (this->_vector.size() < 2)
+		throw std::logic_error("PmerMe program needs at least 2 numbers");
 }
 
 PmergeMe::PmergeMe(void)
@@ -51,25 +53,48 @@ std::string PmergeMe::secureAv(const std::string &av)
 	return tmp;
 }
 
-void PmergeMe::alreadySorted(void)
+void PmergeMe::secureDouble(void)
+{
+	std::vector<int> tmp = this->_vector;
+	std::sort(tmp.begin(), tmp.end());
+	for (size_t i = 1; i < tmp.size(); ++i) {
+        if (tmp[i - 1] == tmp[i]) {
+            throw std::logic_error("No same numbers"); // Doublon trouvé
+        }
+    }
+    return ;
+}
+
+int PmergeMe::alreadySorted(void)
 {
 	int a;
 	std::vector<int>::iterator it = this->_vector.begin();
+	a = *it;
+	it++;
+	while (it != this->_vector.end())
+	{
+		if (a > *it)
+			return 0;
+		a = *it;
+		it++;
+	}
+	return 1;
 }
 
 void PmergeMe::printBefore(bool val)
 {
-	std::cout << "Before: ";
+	std::cout << BLEU << "Before: " << REINIT;
 	if (val == 0)
 	{
 		std::vector<int>::iterator it = this->_vector.begin();
 		while (it != this->_vector.end())
 		{
-			std::cout << *it;
+			std::cout << BLEU<< *it << REINIT;
 			if (it + 1 != this->_vector.end())
 				std::cout << " ";
 			it++;
 		}
+		std::cout << std::endl;
 	}
 	else
 	{
@@ -100,3 +125,19 @@ void PmergeMe::initContainers(std::string tmp)
 	}
 }
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+
+/* +++++++++++++++++ Execution +++++++++++++++++++++++++++*/
+
+void PmergeMe::Run(void)
+{
+	printBefore(0);
+	if (alreadySorted())
+		std::cout << VERT << "After:  already sorted" << REINIT << std::endl;
+	else
+	{
+
+	}
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
