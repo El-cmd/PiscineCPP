@@ -51,6 +51,12 @@ std::string PmergeMe::secureAv(const std::string &av)
 	return tmp;
 }
 
+void PmergeMe::alreadySorted(void)
+{
+	int a;
+	std::vector<int>::iterator it = this->_vector.begin();
+}
+
 void PmergeMe::printBefore(bool val)
 {
 	std::cout << "Before: ";
