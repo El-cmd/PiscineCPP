@@ -29,8 +29,8 @@ class PmergeMe
 	PmergeMe(const std::string &av);
 	~PmergeMe(void);
 	/*++++++++++++++++++++++++++++++++++++++++++*/
-	void printBefore(bool val); // affiche false _vector/true _list 
-	void Run(void);
+	void print(bool val); // affiche false _vector/true _list 
+	void Run(void); // Lance le tri
 
 	private:
 
@@ -38,6 +38,9 @@ class PmergeMe
 	PmergeMe &operator=(const PmergeMe &other);
 	PmergeMe(const PmergeMe &other);
 	PmergeMe(void);
+	/*++++++++++++++++++++++++++++++++++++++++++*/
+	/*++++++++++++Algorithme+++++++++++++++++++*/
+	void fordJohnsonSort(std::vector<int>& arr);
 	/*++++++++++++++++++++++++++++++++++++++++++*/
 	std::string secureAv(const std::string &av);
 	std::string trim(const std::string& str);

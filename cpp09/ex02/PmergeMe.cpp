@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
 
-
 /* ++++++++++++++++ Coplian Form ++++++++++++++++++++++++*/
 PmergeMe::PmergeMe(const std::string &av)
 {
@@ -26,11 +25,8 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 	(void)other;
 	return *this;
 }
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-
+ /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* ++++++++++++++ Gestion erreur + Utils function ++++++++++++++++++++++++ */
-
 std::string PmergeMe::trim(const std::string& str)
 {
 	size_t first = str.find_first_not_of(' ');
@@ -81,34 +77,28 @@ int PmergeMe::alreadySorted(void)
 	return 1;
 }
 
-void PmergeMe::printBefore(bool val)
+void PmergeMe::print(bool val)
 {
-	std::cout << BLEU << "Before: " << REINIT;
-	if (val == 0)
-	{
-		std::vector<int>::iterator it = this->_vector.begin();
-		while (it != this->_vector.end())
-		{
-			std::cout << BLEU<< *it << REINIT;
-			if (it + 1 != this->_vector.end())
-				std::cout << " ";
-			it++;
-		}
-		std::cout << std::endl;
-	}
+	if (val == true)
+		std::cout << BLEU << "Before: " << REINIT;
 	else
+		std::cout << VERT << "After: " << REINIT;
+	std::vector<int>::iterator it = this->_vector.begin();
+	while (it != this->_vector.end())
 	{
-		std::list<int>::iterator it = this->_list.begin();
-		while (it != this->_list.end())
-		{
-			std::cout << *it << " ";
-			it++;
-		}
+		if (val == true)
+			std::cout << BLEU << *it << REINIT;
+		else
+			std::cout << VERT << *it << REINIT;
+		if (it + 1 != this->_vector.end())
+			std::cout << " ";
+		it++;
 	}
+	std::cout << std::endl;
 }
 
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++ Init containers +++++++++++++++++++ */
+ /* +++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++++ Init containers +++++++++++++++++++ */
 void PmergeMe::initContainers(std::string tmp)
 {
 	std::string str;
@@ -124,19 +114,33 @@ void PmergeMe::initContainers(std::string tmp)
 		this->_list.push_back(std::atoi(str.c_str()));
 	}
 }
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+ /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++++ Execution ++++++++++++++++++++++++++ */
+
+void PmergeMe::fordJohnsonSort(std::vector<int>& arr)
+{
+	if (arr.size() <= 1)
+        return;
+	int mid = arr.size() / 2;
+    std::vector<int> left(arr.begin(), arr.begin() + mid);
+    std::vector<int> right(arr.begin() + mid, arr.end());
+    fordJohnsonSort(left);
+    fordJohnsonSort(right);
+    arr.clear();
+	std::merge(left.begin(), left.end(), right.begin(), right.end(), std::back_inserter(arr));
+}
 
 
-/* +++++++++++++++++ Execution +++++++++++++++++++++++++++*/
 
 void PmergeMe::Run(void)
 {
-	printBefore(0);
+	print(1);
 	if (alreadySorted())
 		std::cout << VERT << "After:  already sorted" << REINIT << std::endl;
 	else
 	{
-
+		fordJohnsonSort(this->_vector);
+		print(0);
 	}
 }
 
