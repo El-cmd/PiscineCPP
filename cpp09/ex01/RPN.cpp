@@ -81,6 +81,8 @@ void RPN::initQueue(std::string tmp)
 			this->_sign.push(tmp[i]);
 		i--;
 	}
+	if (!(this->_stack.size() + 1 == this->_stack.size()))
+		throw std::logic_error("needs one more digit than sign");
 }
 /* +++++++++++++++++++++++++++ */
 

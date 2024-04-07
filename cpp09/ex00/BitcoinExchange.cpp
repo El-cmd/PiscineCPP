@@ -72,22 +72,30 @@ int BitcoinConverter::protectDate(const std::string &date)
 	}
 	std::string Year;
 	std::string Month;
+	std::string Day_error = "101010110101";
 	std::string Day;
 	int i = 0;
 	int delim = 0;
 	while (date[i])
 	{
-		if (delim == 0)
+		if (delim == 0 && isdigit(date[i]))
 			Year = Year + date[i];
-		else if (delim == 1)
+		else if (delim == 1 && isdigit(date[i]))
 			Month = Month + date[i];
-		else if ( delim == 2)
+		else if ( delim == 2 && isdigit(date[i]))
 			Day = Day + date[i];
 		if (date[i] == '-')
 			delim++;
 		i++;
 	}
-	if (delim != 2 || (Month < "01" || Month > "13") || (Day < "01" || Day > "31") || (Year > "2023"))
+	if (delim != 2 || (Month < "01" || Month > "12") || (Day < "01" || Day > "31") || \
+		(Year > "2023" || Year < "2009") || (Month == "02" && ((std::atoi(Year.c_str()) % 4 != 0 && Day > "28") || (Day > "29"))) || \
+		(Day_error[std::atoi(Month.c_str()) - 1] == '0' && Day > "30"))
+	{
+		std::cerr << ROUGE << "Error Bad input => " << date << REINIT << std::endl;
+		return 1;
+	}
+	if ((Day_error[std::atoi(Month.c_str()) - 1] == '0' && Day > "30"))
 	{
 		std::cerr << ROUGE << "Error Bad input => " << date << REINIT << std::endl;
 		return 1;
@@ -147,7 +155,11 @@ void BitcoinConverter::Run(void)
 			{
 				date = trim(buff.substr(0, i));
 				valeur = trim(buff.substr(i + 1, buff.size()));
-				this->printResult(std::strtof(valeur.c_str(), NULL), date);
+				float a = protectStrtof(valeur.c_str());
+				if (a)
+					this->printResult(a, date);
+				else
+					std::cerr << ROUGE << "Error: Invalid line" << REINIT << std::endl;
 			}
 			else
 				std::cerr << ROUGE << "Error: Invalid line" << REINIT << std::endl;
