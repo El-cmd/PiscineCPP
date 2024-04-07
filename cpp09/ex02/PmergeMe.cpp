@@ -117,21 +117,63 @@ void PmergeMe::initContainers(std::string tmp)
  /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* +++++++++++++++++ Execution ++++++++++++++++++++++++++ */
 
-void PmergeMe::fordJohnsonSort(std::vector<int>& arr)
+
+/*++++++++++++Algorithme For vector +++++++++++++++++++*/
+void PmergeMe::fordJohnsonSortFor_vector(std::vector<int>& arr)
 {
 	if (arr.size() <= 1)
         return;
 	int mid = arr.size() / 2;
     std::vector<int> left(arr.begin(), arr.begin() + mid);
     std::vector<int> right(arr.begin() + mid, arr.end());
-    fordJohnsonSort(left);
-    fordJohnsonSort(right);
+    fordJohnsonSortFor_vector(left);
+    fordJohnsonSortFor_vector(right);
     arr.clear();
 	std::merge(left.begin(), left.end(), right.begin(), right.end(), std::back_inserter(arr));
 }
 
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/*++++++++++++Algorithme For List+++++++++++++++++++*/
+std::list<int> PmergeMe::fordJohnsonSortFor_list(std::list<int>& lst)
+{
+    if (lst.size() <= 1) {
+        return lst; // La liste est déjà triée
+    }
 
+    // Diviser la liste en deux moitiés
+    std::list<int> left, right;
+    std::list<int>::iterator it = lst.begin();
+    advance(it, lst.size() / 2); // Avance jusqu'à la moitié de la liste
+    left.splice(left.begin(), lst, lst.begin(), it); // Première moitié
+    right.splice(right.begin(), lst, it, lst.end()); // Deuxième moitié
 
+    // Trier récursivement
+    left = fordJohnsonSortFor_list(left);
+    right = fordJohnsonSortFor_list(right);
+
+    // Fusionner et retourner
+    return mergeLists(left, right);
+}
+
+std::list<int> PmergeMe::mergeLists(std::list<int>& left, std::list<int>& right)
+{
+    std::list<int> result;
+    while (!left.empty() && !right.empty()) {
+        if (left.front() < right.front()) {
+            result.push_back(left.front());
+            left.pop_front();
+        } else {
+            result.push_back(right.front());
+            right.pop_front();
+        }
+    }
+    // Ajouter les éléments restants
+    result.splice(result.end(), left);
+    result.splice(result.end(), right);
+
+    return result;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 void PmergeMe::Run(void)
 {
 	print(1);
@@ -139,8 +181,18 @@ void PmergeMe::Run(void)
 		std::cout << VERT << "After:  already sorted" << REINIT << std::endl;
 	else
 	{
-		fordJohnsonSort(this->_vector);
+		timeval debut, fin;
+		gettimeofday(&debut, NULL);
+		fordJohnsonSortFor_vector(this->_vector);
+		gettimeofday(&fin, NULL);
 		print(0);
+		std::cout << JAUNE << "Time to process a range of " << this->_vector.size();
+		std::cout << JAUNE << " elements with std::vector<int> : " << fin.tv_usec - debut.tv_usec << " us" << REINIT <<std::endl;
+		gettimeofday(&debut, NULL);
+		this->_list = PmergeMe::fordJohnsonSortFor_list(this->_list);
+		gettimeofday(&fin, NULL);
+		std::cout << JAUNE << "Time to process a range of " << this->_list.size();
+		std::cout << JAUNE << " elements with std::list<int> : " << fin.tv_usec - debut.tv_usec << " us" << REINIT <<std::endl;
 	}
 }
 

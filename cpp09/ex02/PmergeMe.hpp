@@ -21,6 +21,7 @@
 #include <cstdlib>
 #include <list>
 #include <algorithm>
+#include <sys/time.h>
 
 class PmergeMe
 {
@@ -40,7 +41,9 @@ class PmergeMe
 	PmergeMe(void);
 	/*++++++++++++++++++++++++++++++++++++++++++*/
 	/*++++++++++++Algorithme+++++++++++++++++++*/
-	void fordJohnsonSort(std::vector<int>& arr);
+	void fordJohnsonSortFor_vector(std::vector<int>& arr);
+	std::list<int> fordJohnsonSortFor_list(std::list<int>& lst);
+	std::list<int> mergeLists(std::list<int>& left, std::list<int>& right);
 	/*++++++++++++++++++++++++++++++++++++++++++*/
 	std::string secureAv(const std::string &av);
 	std::string trim(const std::string& str);
