@@ -10,6 +10,19 @@ BitcoinConverter::BitcoinConverter(void)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
+
+BitcoinConverter::BitcoinConverter(const BitcoinConverter &other)
+{
+	*this = other;
+}
+
+BitcoinConverter &BitcoinConverter::operator=(const BitcoinConverter &other)
+{
+	if (this != &other)
+		*this = other;
+	return *this;
+}
+
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // ++++++++++++++++++ Base de données dans la map +++++++++++++++++++++++++++ //

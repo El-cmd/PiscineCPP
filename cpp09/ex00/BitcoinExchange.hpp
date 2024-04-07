@@ -24,26 +24,31 @@
 class BitcoinConverter
 {
 	public:
-	// Coplien
-	BitcoinConverter(const std::string &input);
-	//BitcoinConverter(const BitcoinConverter &other);
-	//BitcoinConverter &operator=(const BitcoinConverter &other);
 
+	//Constructor && destructor
+	BitcoinConverter(const std::string &input);
+	~BitcoinConverter(){};
+	//Exec Function
+	void Run(void);
+
+	private:
 	//getter
 	const std::string &getInput(void);
 	const std::map<std::string, std::string> &getData(void);
 
-	//Member Functions
-	void Run(void);
+	// Coplien
+	BitcoinConverter &operator=(const BitcoinConverter &other);
+	BitcoinConverter(const BitcoinConverter &other);
+	BitcoinConverter(void);
 
-	private:
+	//Member Functions
 	int protectDate(const std::string &date);
 	float protectStrtof(const char *strIt);
 	void initBdd(void);
 	void printResult(const float &Float, const std::string &Date);
 	float  Compare(const std::string &date, const float &Float);
-	BitcoinConverter(void);
 	std::string trim(const std::string& str);
+
 	std::map<std::string, std::string> _data;
 	const std::string _input; 
 };
