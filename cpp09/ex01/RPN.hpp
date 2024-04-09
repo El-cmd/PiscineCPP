@@ -1,4 +1,4 @@
-#ifndef RPN__HPP
+ 	#ifndef RPN__HPP
 	#define RPN__HPP
 
 
@@ -22,7 +22,7 @@
 #define DIV '/'
 #define MULT '*'
 #define ADD '+'
-#define SOUS '-'
+#define SOUS '-'              
 
 class RPN
 {
@@ -40,7 +40,6 @@ class RPN
 	std::string trim(const std::string& str);
 	std::string secureAv(const std::string &av);
 	std::stack<int> _stack;
-	std::stack<char> _sign;
 	RPN();
 	bool isSign(char c);
 };

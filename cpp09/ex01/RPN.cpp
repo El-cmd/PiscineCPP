@@ -73,15 +73,23 @@ std::string RPN::secureAv(const std::string &av)
 void RPN::initQueue(std::string tmp)
 {
 	int i = tmp.length() - 1;
+	int sign = 0;
+	int nb = 0;
 	while (i >= 0)
 	{
 		if (isdigit(tmp[i]))
+		{
 			this->_stack.push(tmp[i] - '0');
+			nb++;
+		}
 		else if (isSign(tmp[i]))
-			this->_sign.push(tmp[i]);
+		{
+			this->_stack.push(tmp[i]);
+			sign++;
+		}
 		i--;
 	}
-	if (!(this->_stack.size() + 1 == this->_stack.size()))
+	if (!(sign + 1 == nb))
 		throw std::logic_error("needs one more digit than sign");
 }
 /* +++++++++++++++++++++++++++ */
@@ -90,8 +98,6 @@ void RPN::initQueue(std::string tmp)
 
 int RPN::calcul(int a, int b, char c)
 {
-	// if (this->_stack.empty() && !this->_sign.empty())
-		// return a;
 	if (c == SOUS)
 		return a - b;
 	else if (c == ADD)
@@ -110,14 +116,48 @@ int RPN::calcul(int a, int b, char c)
 
 void RPN::Run(void)
 {
-	int result;
-	result = this->_stack.top();
+	int tmp;
+	int result2;
+	std::stack<int> _prio;
+	int result = this->_stack.top();
 	this->_stack.pop();
-	while(!this->_sign.empty() && !this->_stack.empty())
+	tmp = this->_stack.top();
+	this->_stack.pop();
+	result = calcul(result, tmp, this->_stack.top());
+	this->_stack.pop();
+	while(!this->_stack.empty())
 	{
-		result = calcul(result, this->_stack.top(), this->_sign.top());
-		this->_sign.pop();
+		tmp = this->_stack.top();
+		if (isSign(tmp))
+			throw std::logic_error("Error sign");
 		this->_stack.pop();
+		if (isSign(this->_stack.top()))
+		{
+			if (isSign(tmp))
+				throw std::logic_error("Error sign");
+			result = calcul(result, tmp, this->_stack.top());
+			this->_stack.pop();
+		}
+		else
+		{
+			while (!isSign(this->_stack.top()))
+			{
+				_prio.push(this->_stack.top());
+				this->_stack.pop();
+			}
+			result2 = _prio.top();
+			_prio.pop();
+			while (!_prio.empty())
+			{
+				result2 = calcul(result2, _prio.top(), this->_stack.top());
+				this->_stack.pop();
+				_prio.pop();
+			}
+			result2 = calcul(tmp, result2, this->_stack.top());
+			this->_stack.pop();
+			result = calcul(result, result2, this->_stack.top());
+			this->_stack.pop();
+		}
 	}
 	std::cout << VERT << result << REINIT << std::endl;
 }
