@@ -54,11 +54,9 @@ void PmergeMe::secureDouble(void)
 {
 	std::vector<int> tmp = this->_vector;
 	std::sort(tmp.begin(), tmp.end());
-	for (size_t i = 1; i < tmp.size(); ++i) {
-        if (tmp[i - 1] == tmp[i]) {
+	for (size_t i = 1; i < tmp.size(); ++i)
+        if (tmp[i - 1] == tmp[i])
             throw std::logic_error("No same numbers"); // Doublon trouvé
-        }
-    }
     return ;
 }
 

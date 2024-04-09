@@ -1,22 +1,22 @@
 #include "BitcoinExchange.hpp"
 
 // +++++++++++++++++++++++++++ Constructeur +++++++++++++++++++++++++++++++++ //
-BitcoinConverter::BitcoinConverter(const std::string &input): _input(input)
+BitcoinExchange::BitcoinExchange(const std::string &input): _input(input)
 {
 	this->initBdd();
 }
 
-BitcoinConverter::BitcoinConverter(void)
+BitcoinExchange::BitcoinExchange(void)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-BitcoinConverter::BitcoinConverter(const BitcoinConverter &other)
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
 	*this = other;
 }
 
-BitcoinConverter &BitcoinConverter::operator=(const BitcoinConverter &other)
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
 	if (this != &other)
 		*this = other;
@@ -26,7 +26,7 @@ BitcoinConverter &BitcoinConverter::operator=(const BitcoinConverter &other)
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // ++++++++++++++++++ Base de données dans la map +++++++++++++++++++++++++++ //
-void BitcoinConverter::initBdd(void)
+void BitcoinExchange::initBdd(void)
 {
 	std::ifstream in("data.csv");
 	std::string buff;
@@ -52,7 +52,7 @@ void BitcoinConverter::initBdd(void)
 
 // ++++++++++ Securité ++++++++ //
 
-float BitcoinConverter::protectStrtof(const char *strIt)
+float BitcoinExchange::protectStrtof(const char *strIt)
 {
 	char *endptr;
 	float result = std::strtof(strIt, &endptr);
@@ -63,7 +63,7 @@ float BitcoinConverter::protectStrtof(const char *strIt)
 	return result;
 }
 
-int BitcoinConverter::protectDate(const std::string &date)
+int BitcoinExchange::protectDate(const std::string &date)
 {
 	if (date.size() != 10)
 	{
@@ -105,7 +105,7 @@ int BitcoinConverter::protectDate(const std::string &date)
 
 
 // +++++++++++++++++++++++++ execution ++++++++++++++++++++++++++++++++++++++ //
-float  BitcoinConverter::Compare(const std::string &date, const float &Float)
+float  BitcoinExchange::Compare(const std::string &date, const float &Float)
 {
 	std::map<std::string, std::string>::iterator it = this->_data.begin();
 	std::map<std::string, std::string>::iterator ite = this->_data.end();
@@ -123,7 +123,7 @@ float  BitcoinConverter::Compare(const std::string &date, const float &Float)
 	return Float * protectStrtof(it->second.c_str());
 }
 
-void BitcoinConverter::printResult(const float &Float, const std::string &Date)
+void BitcoinExchange::printResult(const float &Float, const std::string &Date)
 {
 	if (protectDate(Date))
 		return ;
@@ -138,7 +138,7 @@ void BitcoinConverter::printResult(const float &Float, const std::string &Date)
 			std::cout << Date << " => " << Float << " = " << result << std::endl;
 }
 
-void BitcoinConverter::Run(void)
+void BitcoinExchange::Run(void)
 {
 	std::ifstream inn(this->_input.c_str());
 	std::string buff;
@@ -171,19 +171,19 @@ void BitcoinConverter::Run(void)
 }
 
 // ++++++++++++++++++++++++ getter +++++++++++++++++++++++++++++++++++++++ //
-const std::map<std::string, std::string> &BitcoinConverter::getData(void)
+const std::map<std::string, std::string> &BitcoinExchange::getData(void)
 {
 	return this->_data;
 }
 
-const std::string &BitcoinConverter::getInput(void)
+const std::string &BitcoinExchange::getInput(void)
 {
 	return this->_input;
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // Fonction pour élaguer les espaces blancs au début et à la fin d'une chaîne
-std::string BitcoinConverter::trim(const std::string& str) 
+std::string BitcoinExchange::trim(const std::string& str) 
 {
     size_t first = str.find_first_not_of(' ');
     if (first == std::string::npos)

@@ -21,13 +21,13 @@
 #define CYAN "\033[36m"
 #define BLANC "\033[37m" 
 
-class BitcoinConverter
+class BitcoinExchange
 {
 	public:
 
 	//Constructor && destructor
-	BitcoinConverter(const std::string &input);
-	~BitcoinConverter(){};
+	BitcoinExchange(const std::string &input);
+	~BitcoinExchange(){};
 	//Exec Function
 	void Run(void);
 
@@ -37,9 +37,9 @@ class BitcoinConverter
 	const std::map<std::string, std::string> &getData(void);
 
 	// Coplien
-	BitcoinConverter &operator=(const BitcoinConverter &other);
-	BitcoinConverter(const BitcoinConverter &other);
-	BitcoinConverter(void);
+	BitcoinExchange &operator=(const BitcoinExchange &other);
+	BitcoinExchange(const BitcoinExchange &other);
+	BitcoinExchange(void);
 
 	//Member Functions
 	int protectDate(const std::string &date);

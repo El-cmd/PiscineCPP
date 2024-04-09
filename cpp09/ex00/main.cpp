@@ -6,7 +6,7 @@ int main(int ac, char **av)
 	{
 		if (ac == 2)
 		{
-			BitcoinConverter Conversion(av[1]);
+			BitcoinExchange Conversion(av[1]);
 			Conversion.Run();
 		}
 		else
