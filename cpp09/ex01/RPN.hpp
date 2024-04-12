@@ -33,7 +33,7 @@ class RPN
 
 
 	private:
-	int calcul(int a, int b, char c);
+	float calcul(float a, float b, char c);
 	RPN &operator=(const RPN &other);
 	RPN(const RPN &other);
 	void initQueue(std::string tmp);

@@ -96,7 +96,7 @@ void RPN::initQueue(std::string tmp)
 
 /* ++++++ Execution +++++ */
 
-int RPN::calcul(int a, int b, char c)
+float RPN::calcul(float a, float b, char c)
 {
 	if (c == SOUS)
 		return a - b;
@@ -117,9 +117,9 @@ int RPN::calcul(int a, int b, char c)
 void RPN::Run(void)
 {
 	int tmp;
-	int result2;
+	float result2;
 	std::stack<int> _prio;
-	int result = this->_stack.top();
+	float result = this->_stack.top();
 	this->_stack.pop();
 	tmp = this->_stack.top();
 	this->_stack.pop();
