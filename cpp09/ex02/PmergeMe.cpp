@@ -113,66 +113,174 @@ void PmergeMe::initContainers(std::string tmp)
 		this->_list.push_back(std::atoi(str.c_str()));
 	}
 }
- /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/* +++++++++++++++++ Execution ++++++++++++++++++++++++++ */
-
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 /*++++++++++++Algorithme For vector +++++++++++++++++++*/
+void PmergeMe::bigSortV(std::vector<std::pair<int, int> > &pair)
+{
+	std::vector<std::pair<int, int> >::iterator it = pair.begin();
+	std::vector<std::pair<int, int> >::iterator itt = pair.begin() + 1;
+	while (itt != pair.end())
+	{
+		if (it->first > itt->first)
+		{
+			std::swap(it->first, itt->first);
+			it = pair.begin();
+			itt = pair.begin() + 1;
+		}
+		it++;
+		itt++;
+	}
+	it = pair.begin();
+	while (it != pair.end())
+	{
+		this->_vector.push_back(it->first);
+		it++;
+	}
+}
+
+std::vector<std::pair<int, int> > PmergeMe::makeBigPairV(std::vector<int>& arr)
+{
+	std::vector<std::pair<int, int> > _pair;
+	int tmp;
+	std::vector<int>::iterator it = arr.begin();
+	while (it != arr.end())
+	{
+		tmp = *it;
+		it++;
+		if (tmp > *it)
+			_pair.push_back(std::make_pair(tmp, *it));
+		else
+			_pair.push_back(std::make_pair(*it, tmp));
+		it++;
+	}
+	return _pair;
+}
+
+void PmergeMe::littleInsertV(std::vector<std::pair<int, int> > &_pair, int imp)
+{
+	std::vector<std::pair<int, int> >::iterator itt = _pair.begin();
+	std::vector<int>::iterator it = this->_vector.begin();
+	while (itt != _pair.end())
+	{
+		while (itt->second > *it)
+			it++;
+		if (itt->second < *it)
+		{
+			this->_vector.insert(it, 1, itt->second);
+			it = this->_vector.begin();
+		}
+		itt++;
+	}
+	if (imp != -1)
+	{
+		it = this->_vector.begin();
+		while (imp > *it)
+			it++;
+		this->_vector.insert(it, 1, imp);
+	}
+}
+
 void PmergeMe::fordJohnsonSortFor_vector(std::vector<int>& arr)
 {
-	if (arr.size() <= 1)
-        return;
-	int mid = arr.size() / 2;
-    std::vector<int> left(arr.begin(), arr.begin() + mid);
-    std::vector<int> right(arr.begin() + mid, arr.end());
-    fordJohnsonSortFor_vector(left);
-    fordJohnsonSortFor_vector(right);
-    arr.clear();
-	std::merge(left.begin(), left.end(), right.begin(), right.end(), std::back_inserter(arr));
+	int imp = -1;
+	if (arr.size() % 2 != 0)
+	{
+		imp = arr.back();
+		arr.pop_back();
+	}
+	std::vector<std::pair<int, int> > _pair = makeBigPairV(arr);
+	arr.clear();
+	bigSortV(_pair);
+	littleInsertV(_pair, imp);
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/*++++++++++++Algorithme For list +++++++++++++++++++*/
+void PmergeMe::bigSortL(std::list<std::pair<int, int> > &pair)
+{
+	std::list<std::pair<int, int> >::iterator it = pair.begin();
+	std::list<std::pair<int, int> >::iterator itt = pair.begin();
+	itt++;
+	while (itt != pair.end())
+	{
+		if (it->first > itt->first)
+		{
+			std::swap(it->first, itt->first);
+			it = pair.begin();
+			itt = pair.begin();
+			itt++;
+		}
+		it++;
+		itt++;
+	}
+	it = pair.begin();
+	while (it != pair.end())
+	{
+		this->_list.push_back(it->first);
+		it++;
+	}
+}
+
+std::list<std::pair<int, int> > PmergeMe::makeBigPairL(std::list<int>& arr)
+{
+	std::list<std::pair<int, int> > _pair;
+	int tmp;
+	std::list<int>::iterator it = arr.begin();
+	while (it != arr.end())
+	{
+		tmp = *it;
+		it++;
+		if (tmp > *it)
+			_pair.push_back(std::make_pair(tmp, *it));
+		else
+			_pair.push_back(std::make_pair(*it, tmp));
+		it++;
+	}
+	return _pair;
+}
+
+void PmergeMe::littleInsertL(std::list<std::pair<int, int> > &_pair, int imp)
+{
+	std::list<std::pair<int, int> >::iterator itt = _pair.begin();
+	std::list<int>::iterator it = this->_list.begin();
+	while (itt != _pair.end())
+	{
+		while (itt->second > *it)
+			it++;
+		if (itt->second < *it)
+		{
+			this->_list.insert(it, 1, itt->second);
+			it = this->_list.begin();
+		}
+		itt++;
+	}
+	if (imp != -1)
+	{
+		it = this->_list.begin();
+		while (imp > *it)
+			it++;
+		this->_list.insert(it, 1, imp);
+	}
+}
+
+void PmergeMe::fordJohnsonSortFor_list(std::list<int>& arr)
+{
+	int imp = -1;
+	if (arr.size() % 2 != 0)
+	{
+		imp = arr.back();
+		arr.pop_back();
+	}
+	std::list<std::pair<int, int> > _pair = makeBigPairL(arr);
+	arr.clear();
+	bigSortL(_pair);
+	littleInsertL(_pair, imp);
 }
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*++++++++++++Algorithme For List+++++++++++++++++++*/
-std::list<int> PmergeMe::fordJohnsonSortFor_list(std::list<int>& lst)
-{
-    if (lst.size() <= 1) {
-        return lst; // La liste est déjà triée
-    }
 
-    // Diviser la liste en deux moitiés
-    std::list<int> left, right;
-    std::list<int>::iterator it = lst.begin();
-    advance(it, lst.size() / 2); // Avance jusqu'à la moitié de la liste
-    left.splice(left.begin(), lst, lst.begin(), it); // Première moitié
-    right.splice(right.begin(), lst, it, lst.end()); // Deuxième moitié
-
-    // Trier récursivement
-    left = fordJohnsonSortFor_list(left);
-    right = fordJohnsonSortFor_list(right);
-
-    // Fusionner et retourner
-    return mergeLists(left, right);
-}
-
-std::list<int> PmergeMe::mergeLists(std::list<int>& left, std::list<int>& right)
-{
-    std::list<int> result;
-    while (!left.empty() && !right.empty()) {
-        if (left.front() < right.front()) {
-            result.push_back(left.front());
-            left.pop_front();
-        } else {
-            result.push_back(right.front());
-            right.pop_front();
-        }
-    }
-    // Ajouter les éléments restants
-    result.splice(result.end(), left);
-    result.splice(result.end(), right);
-
-    return result;
-}
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++++++++ Exec ++++++++++++++++++++++++++++++ */
 void PmergeMe::Run(void)
 {
 	print(1);
@@ -180,19 +288,19 @@ void PmergeMe::Run(void)
 		std::cout << VERT << "After:  already sorted" << REINIT << std::endl;
 	else
 	{
-		timeval debut, fin;
-		gettimeofday(&debut, NULL);
+		clock_t begin = clock();
 		fordJohnsonSortFor_vector(this->_vector);
-		gettimeofday(&fin, NULL);
+		clock_t end = clock();
 		print(0);
+		double temps = (end - begin);
 		std::cout << JAUNE << "Time to process a range of " << this->_vector.size();
-		std::cout << JAUNE << " elements with std::vector<int> : " << fin.tv_usec - debut.tv_usec << " us" << REINIT <<std::endl;
-		gettimeofday(&debut, NULL);
-		this->_list = PmergeMe::fordJohnsonSortFor_list(this->_list);
-		gettimeofday(&fin, NULL);
+		std::cout << JAUNE << " elements with std::vector<int> : " << temps << " us" << REINIT <<std::endl;
+		begin = clock();
+		fordJohnsonSortFor_list(this->_list);
+		end = clock();
+		temps = end - begin;
 		std::cout << JAUNE << "Time to process a range of " << this->_list.size();
-		std::cout << JAUNE << " elements with std::list<int> : " << fin.tv_usec - debut.tv_usec << " us" << REINIT <<std::endl;
+		std::cout << JAUNE << " elements with std::list<int> : " << temps << " us" << REINIT <<std::endl;
 	}
 }
-
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
