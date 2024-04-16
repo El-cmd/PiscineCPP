@@ -118,18 +118,22 @@ void PmergeMe::initContainers(std::string tmp)
 /*++++++++++++Algorithme For vector +++++++++++++++++++*/
 void PmergeMe::bigSortV(std::vector<std::pair<int, int> > &pair)
 {
+	// std::vector<std::pair<int, int> >::iterator pairIt = pair.begin();
 	std::vector<std::pair<int, int> >::iterator it = pair.begin();
 	std::vector<std::pair<int, int> >::iterator itt = pair.begin() + 1;
 	while (itt != pair.end())
 	{
 		if (it->first > itt->first)
 		{
-			std::swap(it->first, itt->first);
+			std::iter_swap(it, itt);
 			it = pair.begin();
 			itt = pair.begin() + 1;
 		}
-		it++;
-		itt++;
+		else
+		{
+			it++;
+			itt++;
+		}
 	}
 	it = pair.begin();
 	while (it != pair.end())
@@ -167,7 +171,7 @@ void PmergeMe::littleInsertV(std::vector<std::pair<int, int> > &_pair, int imp)
 			it++;
 		if (itt->second < *it)
 		{
-			this->_vector.insert(it, 1, itt->second);
+			this->_vector.insert(it, itt->second);
 			it = this->_vector.begin();
 		}
 		itt++;
@@ -177,7 +181,7 @@ void PmergeMe::littleInsertV(std::vector<std::pair<int, int> > &_pair, int imp)
 		it = this->_vector.begin();
 		while (imp > *it)
 			it++;
-		this->_vector.insert(it, 1, imp);
+		this->_vector.insert(it, imp);
 	}
 }
 
@@ -206,13 +210,16 @@ void PmergeMe::bigSortL(std::list<std::pair<int, int> > &pair)
 	{
 		if (it->first > itt->first)
 		{
-			std::swap(it->first, itt->first);
+			std::iter_swap(it, itt);
 			it = pair.begin();
 			itt = pair.begin();
 			itt++;
 		}
-		it++;
-		itt++;
+		else
+		{
+			it++;
+			itt++;
+		}
 	}
 	it = pair.begin();
 	while (it != pair.end())
@@ -250,7 +257,7 @@ void PmergeMe::littleInsertL(std::list<std::pair<int, int> > &_pair, int imp)
 			it++;
 		if (itt->second < *it)
 		{
-			this->_list.insert(it, 1, itt->second);
+			this->_list.insert(it, itt->second);
 			it = this->_list.begin();
 		}
 		itt++;
@@ -260,7 +267,7 @@ void PmergeMe::littleInsertL(std::list<std::pair<int, int> > &_pair, int imp)
 		it = this->_list.begin();
 		while (imp > *it)
 			it++;
-		this->_list.insert(it, 1, imp);
+		this->_list.insert(it, imp);
 	}
 }
 
