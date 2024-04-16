@@ -302,17 +302,15 @@ void PmergeMe::Run(void)
 		print(0);
 		long sec = end.tv_sec - start.tv_sec;
     	long nsec = end.tv_nsec - start.tv_nsec;
-    	long micros = sec * 1000000 + nsec / 1000; 
 		std::cout << JAUNE << "Time to process a range of " << this->_vector.size();
-		std::cout << JAUNE << " elements with std::vector<int> : " << micros << " us" << REINIT <<std::endl;
+		std::cout << JAUNE << " elements with std::vector<int> : " << sec * 1000000 + nsec / 1000 << " us" << REINIT <<std::endl;
 		clock_gettime(CLOCK_MONOTONIC, &start);
 		fordJohnsonSortFor_list(this->_list);
 		clock_gettime(CLOCK_MONOTONIC, &end);
 		sec = end.tv_sec - start.tv_sec;
     	nsec = end.tv_nsec - start.tv_nsec;
-    	micros = sec * 1000000 + nsec / 1000; 
 		std::cout << JAUNE << "Time to process a range of " << this->_list.size();
-		std::cout << JAUNE << " elements with std::list<int> : " << micros << " us" << REINIT <<std::endl;
+		std::cout << JAUNE << " elements with std::list<int> : " << sec * 1000000 + nsec / 1000 << " us" << REINIT <<std::endl;
 	}
 }
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
